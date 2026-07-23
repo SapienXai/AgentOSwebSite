@@ -67,9 +67,21 @@ const plans = [
   { name: "Scale", description: "For agencies and companies operating multiple AI teams.", monthly: 199, yearly: 166, suffix: "/mo", available: false, features: [{ label: "25 Workspaces" }, { label: "200 Active Digital Workers", tooltip: "An AI worker configured to pursue goals, use tools and complete work." }, { label: "20 Operator Seats" }, { label: "30 Concurrent Operations", tooltip: "Operations that can run simultaneously across your workforce." }, { label: "500 Scheduled Automations" }, { label: "RBAC, Audit Logs and Multi-Workspace Controls" }, { label: "1-Year Activity History" }], cta: "Start Scaling" },
 ];
 
+const productScreens = [
+  { src: "/assets/screens/01-mission-control.webp", label: "Mission Control" },
+  { src: "/assets/screens/02-dashboard.webp", label: "Live dashboard" },
+  { src: "/assets/screens/03-operations-jobs.webp", label: "Operations & jobs" },
+  { src: "/assets/screens/04-agent-chat.webp", label: "Agent chat" },
+  { src: "/assets/screens/05-workspace-canvas.webp", label: "Workspace canvas" },
+  { src: "/assets/screens/06-task-composer.webp", label: "Task composer" },
+  { src: "/assets/screens/07-agents-overview.webp", label: "Agent overview" },
+  { src: "/assets/screens/08-agent-menu.webp", label: "Agent controls" },
+];
+
 export default function Home() {
   const [yearly, setYearly] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [productSlide, setProductSlide] = useState(0);
   const [selectedWorker, setSelectedWorker] = useState<typeof workers[number] | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
   const [proOfferSeconds, setProOfferSeconds] = useState(300);
@@ -231,47 +243,15 @@ export default function Home() {
             <p>Manage context, tools, accounts, models<span className="mobile-line-break"><br /></span> and tasks in a single, powerful workspace.</p>
             <button type="button" className="button button--ghost" onClick={() => setDemoOpen(true)}><b className="play gold">▶</b> Watch Full Demo <Arrow /></button>
           </div>
-          <div className="dashboard" id="dashboard" aria-label="AgentOS mission control preview">
-            <aside>
-              <Logo compact />
-              <small>×</small>
-              <div className="side-active">◧ <span>Mission Control</span></div>
-              <div>◉ <span>Dashboard</span></div>
-              <b>OPERATIONS</b>
-              <div>♙ <span>Agents</span></div>
-              <div>✓ <span>Tasks</span></div>
-              <div>□ <span>Files</span></div>
-              <div>▣ <span>Accounts</span></div>
-              <div>◇ <span>Models</span></div>
-              <div>⌘ <span>Integrations</span></div>
-              <b>SYSTEM</b>
-              <div>⚙ <span>Settings</span></div>
-            </aside>
-            <div className="mission">
-              <div className="mission-head">
-                <div><span className="app-icon">⌘</span><small>Mission Control</small><p>What should your agents work on?</p></div>
-                <div className="mini-tabs"><b>Outreach</b><span>Research</span><span>Content</span><span>Analysis</span></div>
-                <div className="mission-actions"><span>◎ Focus</span><button>↗ Create Task</button></div>
+          <div className="product-carousel" role="region" aria-roledescription="carousel" aria-label="AgentOS product screens">
+            <img key={productScreens[productSlide].src} src={productScreens[productSlide].src} alt={`${productScreens[productSlide].label} in AgentOS`} />
+            <button type="button" className="product-carousel-arrow product-carousel-arrow--previous" aria-label="Previous product screen" onClick={() => setProductSlide((productSlide - 1 + productScreens.length) % productScreens.length)}>←</button>
+            <button type="button" className="product-carousel-arrow product-carousel-arrow--next" aria-label="Next product screen" onClick={() => setProductSlide((productSlide + 1) % productScreens.length)}>→</button>
+            <div className="product-carousel-footer">
+              <span>{productScreens[productSlide].label}</span>
+              <div className="product-carousel-dots" role="tablist" aria-label="Product screens">
+                {productScreens.map((screen, index) => <button type="button" key={screen.src} role="tab" aria-label={`Show ${screen.label}`} aria-selected={index === productSlide} className={index === productSlide ? "active" : ""} onClick={() => setProductSlide(index)} />)}
               </div>
-              <div className="agent-list">
-                <h4>Active Agents</h4>
-                {["Outreach Guy", "Product Hunt Strategist", "Research Analyst"].map((agent, index) => (
-                  <div className="agent-row" key={agent}>
-                    <i>{index === 1 ? "◉" : "◎"}</i><span><b>{agent}</b><small>{index === 2 ? "Idle" : "Running"}</small></span><em>⌁</em>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="task-view">
-              <div className="task-top"><span>◷ Task · 1</span><small>◉ Results　◎</small></div>
-              <h4>Outreach to design agencies</h4>
-              <p>Find and email design agencies about AgentOS partnership.</p>
-              <b className="accepted">✓ ACCEPTED　▷</b>
-              <small>REVIEW ACCEPTED</small>
-              <div className="chips"><span>▱ Source</span><span>▣ Sessions 5</span><span>↻ Turns 6</span><span>◫ Tokens 12K</span><span>◉ Runs 10</span></div>
-              <small>LATEST RESULT</small>
-              <p>6 new opportunities added to CRM.</p>
-              <div className="follow">Ask a follow-up... <b>›</b></div>
             </div>
           </div>
         </div>
