@@ -92,14 +92,24 @@ export default function Home() {
       <header className="nav-shell">
         <Logo animated />
         <nav className={menuOpen ? "open" : ""} aria-label="Main navigation">
-          <a href="#product" onClick={() => setMenuOpen(false)}>Product</a>
-          <a href="#solutions" onClick={() => setMenuOpen(false)}>Solutions</a>
-          <a href="#resources" onClick={() => setMenuOpen(false)}>Resources</a>
-          <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
-          <a href="#company" onClick={() => setMenuOpen(false)}>Company</a>
+          <div className="mobile-menu-intro">
+            <span>AI WORKFORCE PLATFORM</span>
+            <strong>Build your workforce<br />without the overhead.</strong>
+          </div>
+          <div className="nav-links">
+            <a href="#product" onClick={() => setMenuOpen(false)}>Product <Arrow /></a>
+            <a href="#solutions" onClick={() => setMenuOpen(false)}>Solutions <Arrow /></a>
+            <a href="#resources" onClick={() => setMenuOpen(false)}>Resources <Arrow /></a>
+            <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing <Arrow /></a>
+            <a href="#company" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
+          </div>
+          <div className="mobile-menu-footer">
+            <a className="button mobile-menu-cta" href="#pricing" onClick={() => setMenuOpen(false)}>Start Free <Arrow /></a>
+            <small>© 2026 AgentOS · Built for ambitious teams</small>
+          </div>
         </nav>
         <a className="button button--small nav-cta" href="#pricing">Start Free <Arrow /></a>
-        <button className="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+        <button className={`menu-toggle ${menuOpen ? "open" : ""}`} type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <span /><span />
         </button>
       </header>
@@ -116,9 +126,17 @@ export default function Home() {
           <div className="eyebrow pill">AI WORKFORCE PLATFORM</div>
           <h1 id="hero-title">AI WORKERS.<br /><span>REAL IMPACT.</span></h1>
           <p>Deploy digital workers that think, act,<br className="desktop-only" /> and deliver—at scale.</p>
-          <div className="hero-actions">
-            {proOfferSeconds > 0 ? <a className="button button--pro hero-offer-cta" href="#pricing"><time className="button-countdown" dateTime={`PT${proOfferSeconds}S`}>{proOfferTime}</time><span>Claim Free Pro</span><Arrow /></a> : <a className="button" href="#pricing">Start Free <Arrow /></a>}
-            <button className="button button--ghost" type="button" onClick={() => setDemoOpen(true)}><b className="play">▶</b> Watch Demo</button>
+          <div className="hero-action-stack">
+            <div className="hero-actions">
+              {proOfferSeconds > 0 ? <a className="button button--pro hero-offer-cta" href="#pricing"><time className="button-countdown" dateTime={`PT${proOfferSeconds}S`}>{proOfferTime}</time><span>Claim Free Pro</span><Arrow /></a> : <a className="button" href="#pricing">Start Free <Arrow /></a>}
+              <button className="button button--ghost" type="button" onClick={() => setDemoOpen(true)}><b className="play">▶</b> Watch Demo</button>
+            </div>
+            <div className="hero-socials" aria-label="SapienX social links">
+              <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a>
+              <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a>
+              <a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a>
+              <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
+            </div>
           </div>
           <div className="stats" aria-label="Platform statistics">
             <div><i>♧</i><span><strong>10K+</strong><small>Active Agents</small></span></div>
