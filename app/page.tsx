@@ -178,6 +178,7 @@ export default function Home() {
           <div className="eyebrow pill">AI WORKFORCE PLATFORM</div>
           <h1 id="hero-title">AI WORKERS.<br /><span>REAL IMPACT.</span></h1>
           <p>Build, deploy, manage and supervise<br className="desktop-only" /> teams of digital workers.</p>
+          <div className="hero-trust" aria-label="AgentOS deployment foundations"><div className="hero-trust-track">{trustItems.map((item) => <span className="hero-trust-item" key={item}>{item}</span>)}<span className="hero-trust-duplicates" aria-hidden="true">{trustItems.map((item) => <span className="hero-trust-item" key={`duplicate-${item}`}>{item}</span>)}</span></div></div>
           <div className="hero-action-stack">
             <div className="hero-actions">
               <a className="button hero-offer-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
@@ -190,7 +191,6 @@ export default function Home() {
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
             </div>
           </div>
-          <div className="hero-trust" aria-label="AgentOS deployment foundations"><div className="hero-trust-track">{trustItems.map((item) => <span className="hero-trust-item" key={item}>{item}</span>)}<span className="hero-trust-duplicates" aria-hidden="true">{trustItems.map((item) => <span className="hero-trust-item" key={`duplicate-${item}`}>{item}</span>)}</span></div></div>
           <div className="stats" aria-label="AgentOS deployment advantages">
             <div><i>◈</i><span><strong>Private runtime</strong><small>Your infrastructure</small></span></div>
             <div><i>◎</i><span><strong>Persistent workspaces</strong><small>Your operational context</small></span></div>
