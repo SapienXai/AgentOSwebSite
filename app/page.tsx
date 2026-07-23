@@ -153,11 +153,11 @@ export default function Home() {
             <a className="button mobile-menu-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
             <small>© 2026 AgentOS · Built for ambitious teams</small>
             <div className="hero-socials mobile-menu-socials" aria-label="SapienX social links">
-              <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a>
-              <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a>
+              <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a>
+              <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><img className="social-icon" src="/assets/social/telegram.svg" alt="" /></a>
               <a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a>
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
-              <a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><span className="social-github">GH</span></a>
+              <a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><img className="social-icon" src="/assets/social/github.svg" alt="" /></a>
             </div>
           </div>
         </nav>
@@ -186,11 +186,11 @@ export default function Home() {
               <button className="button button--ghost" type="button" onClick={() => setDemoOpen(true)}><b className="play">▶</b> Watch Demo</button>
             </div>
             <div className="hero-socials" aria-label="SapienX social links">
-              <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a>
-              <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a>
+              <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a>
+              <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><img className="social-icon" src="/assets/social/telegram.svg" alt="" /></a>
               <a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a>
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
-              <a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><span className="social-github">GH</span></a>
+              <a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><img className="social-icon" src="/assets/social/github.svg" alt="" /></a>
             </div>
           </div>
           <div className="stats" aria-label="AgentOS deployment advantages">
@@ -395,7 +395,7 @@ export default function Home() {
       </section>
 
       <footer className="footer page-pad" id="resources">
-        <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="SapienX social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><span className="social-github">GH</span></a></div></div>
+        <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="SapienX social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><img className="social-icon" src="/assets/social/telegram.svg" alt="" /></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><img className="social-icon" src="/assets/social/github.svg" alt="" /></a></div></div>
         <div className="footer-links"><h4>Product</h4><a href="#top">Overview</a><a href="#solutions">Features</a><a href="#product">Integrations</a><a href="#top">Updates</a></div>
         <div className="footer-links"><h4>Solutions</h4><a href="#solutions">By Use Case</a><a href="#solutions">By Industry</a><a href="#top">Templates</a><a href="#top">Customers</a></div>
         <div className="footer-links"><h4>Resources</h4><a href="#top">Docs</a><a href="#top">Guides</a><a href="#top">Blog</a><a href="#top">Help Center</a></div>
