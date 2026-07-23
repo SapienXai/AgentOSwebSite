@@ -121,6 +121,7 @@ export default function Home() {
   const [productLightboxOpen, setProductLightboxOpen] = useState(false);
   const [productDragOffset, setProductDragOffset] = useState(0);
   const [isProductDragging, setIsProductDragging] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<typeof workers[number] | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
   const productSwipeStart = useRef<number | null>(null);
@@ -379,7 +380,7 @@ export default function Home() {
 
       <section className="faq page-pad" id="faq" aria-labelledby="faq-title">
         <div className="faq-intro"><div className="section-kicker">FAQ</div><h2 id="faq-title">The details that<br />matter <span>before you deploy.</span></h2></div>
-        <div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+        <div className="faq-list">{faqs.slice(0, showAllFaqs ? faqs.length : 4).map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}{faqs.length > 4 && <button type="button" className="faq-expand" aria-expanded={showAllFaqs} onClick={() => setShowAllFaqs(!showAllFaqs)}>{showAllFaqs ? "Show fewer questions" : `Show all ${faqs.length} questions`} <Arrow /></button>}</div>
       </section>
 
       <section className="final-cta page-pad">
