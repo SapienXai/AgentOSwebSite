@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Arrow = () => <span aria-hidden="true">→</span>;
 
@@ -82,9 +82,14 @@ export default function Home() {
   const [yearly, setYearly] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [productSlide, setProductSlide] = useState(0);
+  const [productLightboxOpen, setProductLightboxOpen] = useState(false);
+  const [productDragOffset, setProductDragOffset] = useState(0);
+  const [isProductDragging, setIsProductDragging] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<typeof workers[number] | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
   const [proOfferSeconds, setProOfferSeconds] = useState(300);
+  const productSwipeStart = useRef<number | null>(null);
+  const productSwipeMoved = useRef(false);
 
   useEffect(() => {
     const storageKey = "agentos-pro-launch-offer-ends-at-v2";
@@ -96,6 +101,13 @@ export default function Home() {
     const interval = window.setInterval(updateOffer, 1_000);
     return () => window.clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setProductSlide((current) => (current + 1) % productScreens.length);
+    }, 10_000);
+    return () => window.clearInterval(interval);
+  }, [productSlide]);
 
   const proOfferTime = `${String(Math.floor(proOfferSeconds / 60)).padStart(2, "0")}:${String(proOfferSeconds % 60).padStart(2, "0")}`;
 
@@ -244,9 +256,47 @@ export default function Home() {
             <button type="button" className="button button--ghost" onClick={() => setDemoOpen(true)}><b className="play gold">▶</b> Watch Full Demo <Arrow /></button>
           </div>
           <div className="product-carousel" role="region" aria-roledescription="carousel" aria-label="AgentOS product screens">
-            <img key={productScreens[productSlide].src} src={productScreens[productSlide].src} alt={`${productScreens[productSlide].label} in AgentOS`} />
-            <button type="button" className="product-carousel-arrow product-carousel-arrow--previous" aria-label="Previous product screen" onClick={() => setProductSlide((productSlide - 1 + productScreens.length) % productScreens.length)}>←</button>
-            <button type="button" className="product-carousel-arrow product-carousel-arrow--next" aria-label="Next product screen" onClick={() => setProductSlide((productSlide + 1) % productScreens.length)}>→</button>
+            <button
+              type="button"
+              className="product-carousel-stage"
+              aria-label={`Expand ${productScreens[productSlide].label} screenshot`}
+              onPointerDown={(event) => {
+                productSwipeStart.current = event.clientX;
+                productSwipeMoved.current = false;
+                setIsProductDragging(true);
+                event.currentTarget.setPointerCapture(event.pointerId);
+              }}
+              onPointerMove={(event) => {
+                const start = productSwipeStart.current;
+                if (start === null) return;
+                const distance = event.clientX - start;
+                if (Math.abs(distance) > 6) productSwipeMoved.current = true;
+                const maxDistance = event.currentTarget.clientWidth * 0.8;
+                setProductDragOffset(Math.max(-maxDistance, Math.min(maxDistance, distance)));
+              }}
+              onPointerUp={(event) => {
+                const start = productSwipeStart.current;
+                const swipeDistance = start === null ? 0 : event.clientX - start;
+                if (Math.abs(swipeDistance) > event.currentTarget.clientWidth * 0.16) {
+                  productSwipeMoved.current = true;
+                  setProductSlide((current) => (current + (swipeDistance > 0 ? -1 : 1) + productScreens.length) % productScreens.length);
+                }
+                productSwipeStart.current = null;
+                setProductDragOffset(0);
+                setIsProductDragging(false);
+              }}
+              onPointerCancel={() => { productSwipeStart.current = null; setProductDragOffset(0); setIsProductDragging(false); }}
+              onClick={() => {
+                if (!productSwipeMoved.current) setProductLightboxOpen(true);
+              }}
+            >
+              <span className={`product-carousel-track ${isProductDragging ? "is-dragging" : ""}`} style={{ transform: `translate3d(calc(${-productSlide * 100}% + ${productDragOffset}px), 0, 0)` }}>
+                {productScreens.map((screen) => <img key={screen.src} src={screen.src} alt={screen === productScreens[productSlide] ? `${screen.label} in AgentOS` : ""} draggable={false} />)}
+              </span>
+              <span className="product-carousel-expand" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" className="product-carousel-arrow product-carousel-arrow--previous" aria-label="Previous product screen" onClick={() => setProductSlide((current) => (current - 1 + productScreens.length) % productScreens.length)}>←</button>
+            <button type="button" className="product-carousel-arrow product-carousel-arrow--next" aria-label="Next product screen" onClick={() => setProductSlide((current) => (current + 1) % productScreens.length)}>→</button>
             <div className="product-carousel-footer">
               <span>{productScreens[productSlide].label}</span>
               <div className="product-carousel-dots" role="tablist" aria-label="Product screens">
@@ -256,6 +306,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {productLightboxOpen && (
+        <div className="product-lightbox-backdrop" role="presentation" onMouseDown={() => setProductLightboxOpen(false)}>
+          <section className="product-lightbox" role="dialog" aria-modal="true" aria-labelledby="product-lightbox-title" onMouseDown={(event) => event.stopPropagation()}>
+            <button type="button" className="product-lightbox-close" aria-label="Close screenshot" onClick={() => setProductLightboxOpen(false)}>×</button>
+            <img src={productScreens[productSlide].src} alt={`${productScreens[productSlide].label} in AgentOS`} />
+            <div className="product-lightbox-footer"><strong id="product-lightbox-title">{productScreens[productSlide].label}</strong><span>{productSlide + 1} / {productScreens.length}</span></div>
+          </section>
+        </div>
+      )}
 
       <section className="pricing page-pad" id="pricing" aria-labelledby="pricing-title">
         <div className="section-kicker">DIGITAL WORKFORCE PLANS</div>
