@@ -105,6 +105,8 @@ const faqs = [
   ["Is AgentOS open source?", "AgentOS is built on an open-source foundation. Check the repository for the current source and release details."],
 ];
 
+const trustItems = ["Self-hosted", "BYOK", "One-click deployment", "Powered by OpenClaw"];
+
 export default function Home() {
   const [yearly, setYearly] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -181,7 +183,7 @@ export default function Home() {
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
             </div>
           </div>
-          <p className="hero-trust">Self-hosted <span>·</span> BYOK <span>·</span> One-click deployment <span>·</span> Powered by OpenClaw</p>
+          <div className="hero-trust" aria-label="AgentOS deployment foundations"><div className="hero-trust-track">{trustItems.map((item) => <span className="hero-trust-item" key={item}>{item}</span>)}<span className="hero-trust-duplicates" aria-hidden="true">{trustItems.map((item) => <span className="hero-trust-item" key={`duplicate-${item}`}>{item}</span>)}</span></div></div>
           <div className="stats" aria-label="AgentOS deployment advantages">
             <div><i>◈</i><span><strong>Private runtime</strong><small>Your infrastructure</small></span></div>
             <div><i>◎</i><span><strong>Persistent workspaces</strong><small>Your operational context</small></span></div>
