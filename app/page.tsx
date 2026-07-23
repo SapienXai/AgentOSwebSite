@@ -47,23 +47,23 @@ function Logo({ compact = false, animated = false }: { compact?: boolean; animat
 }
 
 const features = [
-  { icon: "◈", title: "Intelligent by Design", copy: "Purpose-built AI workers for real business outcomes." },
-  { icon: "◇", title: "Workforce at Scale", copy: "Deploy thousands of digital workers in minutes." },
-  { icon: "⌾", title: "Secure by Default", copy: "Enterprise-grade security and data privacy." },
-  { icon: "▥", title: "Measurable Impact", copy: "Track performance and ROI in real time." },
+  { icon: "◈", title: "One-click deployment", copy: "Launch your own AgentOS workspace on Railway." },
+  { icon: "◇", title: "Bring your own keys", copy: "Use the model providers and accounts you trust." },
+  { icon: "⌾", title: "Private runtime", copy: "Keep your workspaces and operational context under your control." },
+  { icon: "▥", title: "Open foundation", copy: "Built around the OpenClaw ecosystem." },
 ];
 
 const workers = [
-  { name: "Operator", team: "Operations", copy: "Keeps everything running smoothly.", icon: "▦", cls: "operator", image: "/assets/workers/cutouts/operator.png", bio: "The always-on coordinator that routes work, monitors execution, and keeps your operation moving.", specialties: ["Workflow orchestration", "Task routing", "SLA monitoring"], skills: ["Prioritization", "Tool calling", "Escalation logic"], metrics: [["99.9%", "Workflow uptime"], ["24/7", "Active coverage"], ["1.4s", "Avg. response"]] },
-  { name: "Analyst", team: "Analytics", copy: "Turns data into decisions.", icon: "◎", cls: "analyst", image: "/assets/workers/cutouts/analyst.png", bio: "A sharp research partner that translates raw data into clear signals, opportunities, and decisions.", specialties: ["Market intelligence", "Data synthesis", "Executive briefs"], skills: ["Deep research", "SQL analysis", "Insight writing"], metrics: [["82%", "Faster insight"], ["12K+", "Sources reviewed"], ["Daily", "Signal reports"]] },
-  { name: "Builder", team: "Engineering", copy: "Builds, automates and scales.", icon: "⌁", cls: "builder", image: "/assets/workers/cutouts/builder.png", bio: "The hands-on maker for launching automations, connecting systems, and turning concepts into production.", specialties: ["Automation design", "System integration", "Rapid prototyping"], skills: ["API workflows", "QA checks", "Deployment"], metrics: [["40%", "Faster delivery"], ["120+", "Flows deployed"], ["8 min", "Avg. setup"]] },
-  { name: "Guardian", team: "Security", copy: "Protects what matters most.", icon: "⬡", cls: "guardian", image: "/assets/workers/cutouts/guardian.png", bio: "Your vigilant security partner, continuously checking access, data movement, and operational risk.", specialties: ["Access governance", "Risk detection", "Audit readiness"], skills: ["Policy checks", "Threat triage", "Secure handoffs"], metrics: [["0", "Critical gaps"], ["24/7", "Risk monitoring"], ["100%", "Audit trail"]] },
+  { name: "Operator", team: "Operations", copy: "Coordinates recurring operations, channels and workflows.", icon: "▦", cls: "operator", image: "/assets/workers/cutouts/operator.png", bio: "A coordinator for routing recurring work, monitoring execution, and surfacing what needs attention.", specialties: ["Workflow orchestration", "Task routing", "Run monitoring"], skills: ["Prioritization", "Tool calling", "Escalation logic"], metrics: [["Routes", "Recurring work"], ["Tracks", "Task status"], ["Escalates", "Exceptions"]] },
+  { name: "Analyst", team: "Analytics", copy: "Researches information, monitors data and prepares reports.", icon: "◎", cls: "analyst", image: "/assets/workers/cutouts/analyst.png", bio: "A research partner that turns source material, data and updates into usable briefs for your team.", specialties: ["Market intelligence", "Data synthesis", "Executive briefs"], skills: ["Deep research", "Data analysis", "Insight writing"], metrics: [["Researches", "Source material"], ["Monitors", "Key signals"], ["Prepares", "Reports"]] },
+  { name: "Builder", team: "Engineering", copy: "Creates automations, tools and digital products.", icon: "⌁", cls: "builder", image: "/assets/workers/cutouts/builder.png", bio: "A hands-on maker for connecting systems, designing automations, and moving ideas toward production.", specialties: ["Automation design", "System integration", "Rapid prototyping"], skills: ["API workflows", "QA checks", "Deployment"], metrics: [["Connects", "Your tools"], ["Builds", "Automations"], ["Supports", "Delivery"]] },
+  { name: "Guardian", team: "Security", copy: "Reviews sensitive actions, permissions and security risks.", icon: "⬡", cls: "guardian", image: "/assets/workers/cutouts/guardian.png", bio: "A review layer for sensitive actions, access changes, and risky operational handoffs.", specialties: ["Access governance", "Risk detection", "Audit readiness"], skills: ["Policy checks", "Threat triage", "Secure handoffs"], metrics: [["Reviews", "Sensitive actions"], ["Checks", "Permissions"], ["Supports", "Audit trails"]] },
 ];
 
 const plans = [
   { name: "Free", description: "Build your first AI team.", monthly: 0, yearly: 0, suffix: "forever", note: "Core agent builder and BYOK included.", railwayCredit: true, available: true, features: [{ label: "1 Workspace" }, { label: "3 Active Digital Workers", tooltip: "An AI worker configured to pursue goals, use tools and complete work." }, { label: "3 Connected Accounts" }, { label: "1 Concurrent Operation", tooltip: "One actively running agent operation at a time." }, { label: "7-Day Activity History" }], cta: "Deploy Free", href: "https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" },
   { name: "Builder", description: "For solo founders building an AI workforce.", monthly: 19, yearly: 16, suffix: "/mo", available: false, features: [{ label: "3 Workspaces" }, { label: "10 Active Digital Workers", tooltip: "An AI worker configured to pursue goals, use tools and complete work." }, { label: "15 Connected Accounts" }, { label: "3 Concurrent Operations", tooltip: "Operations that can run simultaneously across your workforce." }, { label: "25 Scheduled Automations" }, { label: "30-Day Activity History" }], cta: "Start Building" },
-  { name: "Pro", description: "For teams running agents in production.", monthly: 79, yearly: 66, suffix: "/mo", available: false, limitedOffer: true, href: "https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic", features: [{ label: "10 Workspaces" }, { label: "50 Active Digital Workers", tooltip: "An AI worker configured to pursue goals, use tools and complete work." }, { label: "5 Operator Seats" }, { label: "10 Concurrent Operations", tooltip: "Operations that can run simultaneously across your workforce." }, { label: "100 Scheduled Automations" }, { label: "Approvals, Analytics and Cost Controls" }, { label: "90-Day Activity History" }], cta: "Claim Free Pro", popular: true },
+  { name: "Pro", description: "For teams running agents in production.", monthly: 79, yearly: 66, suffix: "/mo", available: false, limitedOffer: true, href: "https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic", features: [{ label: "10 Workspaces" }, { label: "50 Active Digital Workers", tooltip: "An AI worker configured to pursue goals, use tools and complete work." }, { label: "5 Operator Seats" }, { label: "Scheduled operations" }, { label: "Approval workflows · Planned" }, { label: "Analytics and cost controls · Planned" }, { label: "90-Day Activity History" }], cta: "Deploy AgentOS", popular: true },
   { name: "Scale", description: "For agencies and companies operating multiple AI teams.", monthly: 199, yearly: 166, suffix: "/mo", available: false, features: [{ label: "25 Workspaces" }, { label: "200 Active Digital Workers", tooltip: "An AI worker configured to pursue goals, use tools and complete work." }, { label: "20 Operator Seats" }, { label: "30 Concurrent Operations", tooltip: "Operations that can run simultaneously across your workforce." }, { label: "500 Scheduled Automations" }, { label: "RBAC, Audit Logs and Multi-Workspace Controls" }, { label: "1-Year Activity History" }], cta: "Start Scaling" },
 ];
 
@@ -78,6 +78,33 @@ const productScreens = [
   { src: "/assets/screens/08-agent-menu.webp", label: "Agent controls" },
 ];
 
+const workflowSteps = [
+  ["01", "Create your workers", "Start with a role, a goal and a clear operating context."],
+  ["02", "Connect your stack", "Add the tools, accounts and model providers your work needs."],
+  ["03", "Assign real work", "Turn recurring operations and requests into focused tasks."],
+  ["04", "Review with control", "Monitor runs and keep human review where it matters."],
+];
+
+const useCases = [
+  ["Solo founders", "Keep research, content and recurring operations moving across every project."],
+  ["Automation agencies", "Run clear client workspaces and review delivery before handoff."],
+  ["Lean startup teams", "Connect shared tools and give routine operations a dependable home."],
+  ["Web3 & community ops", "Coordinate community updates, support queues and ongoing reporting."],
+];
+
+const faqs = [
+  ["What is AgentOS?", "AgentOS helps you build, deploy, manage and supervise teams of digital workers from one workspace."],
+  ["Is AgentOS self-hosted?", "You deploy AgentOS into your own hosting environment, with Railway available as a fast starting point."],
+  ["What does Railway charge for?", "Railway bills the infrastructure that runs your deployment. It is separate from AgentOS software plans."],
+  ["Are AI model costs included?", "No. You bring your own model provider keys, so model usage is billed by your chosen provider."],
+  ["Where is my data stored?", "Your workspace data lives with your deployment and connected services, not in a shared AgentOS runtime."],
+  ["Do I need OpenClaw?", "AgentOS is built around the OpenClaw ecosystem and gives you a focused interface for operating your workforce."],
+  ["Can I use my own model providers?", "Yes. AgentOS is designed for bring-your-own-key model access."],
+  ["How do AgentOS plan limits work?", "Plans define the software workspace, worker and operational controls available to you. Hosting and model usage remain separate."],
+  ["Can I access AgentOS from mobile?", "Yes. The workspace is designed to stay accessible from both mobile and desktop."],
+  ["Is AgentOS open source?", "AgentOS is built on an open-source foundation. Check the repository for the current source and release details."],
+];
+
 export default function Home() {
   const [yearly, setYearly] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -87,20 +114,8 @@ export default function Home() {
   const [isProductDragging, setIsProductDragging] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<typeof workers[number] | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
-  const [proOfferSeconds, setProOfferSeconds] = useState(300);
   const productSwipeStart = useRef<number | null>(null);
   const productSwipeMoved = useRef(false);
-
-  useEffect(() => {
-    const storageKey = "agentos-pro-launch-offer-ends-at-v2";
-    const storedValue = window.localStorage.getItem(storageKey);
-    const offerEnd = storedValue === null ? Date.now() + 300_000 : Number(storedValue);
-    if (storedValue === null) window.localStorage.setItem(storageKey, String(offerEnd));
-    const updateOffer = () => setProOfferSeconds(Math.max(0, Math.ceil((offerEnd - Date.now()) / 1000)));
-    updateOffer();
-    const interval = window.setInterval(updateOffer, 1_000);
-    return () => window.clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -108,8 +123,6 @@ export default function Home() {
     }, 10_000);
     return () => window.clearInterval(interval);
   }, [productSlide]);
-
-  const proOfferTime = `${String(Math.floor(proOfferSeconds / 60)).padStart(2, "0")}:${String(proOfferSeconds % 60).padStart(2, "0")}`;
 
   return (
     <main id="top">
@@ -122,13 +135,13 @@ export default function Home() {
           </div>
           <div className="nav-links">
             <a href="#product" onClick={() => setMenuOpen(false)}>Product <Arrow /></a>
-            <a href="#solutions" onClick={() => setMenuOpen(false)}>Solutions <Arrow /></a>
+            <a href="#how-it-works" onClick={() => setMenuOpen(false)}>How it works <Arrow /></a>
             <a href="#resources" onClick={() => setMenuOpen(false)}>Resources <Arrow /></a>
             <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing <Arrow /></a>
             <a href="#company" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
           </div>
           <div className="mobile-menu-footer">
-            <a className="button mobile-menu-cta" href="#pricing" onClick={() => setMenuOpen(false)}>Start Free <Arrow /></a>
+            <a className="button mobile-menu-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
             <small>© 2026 AgentOS · Built for ambitious teams</small>
             <div className="hero-socials mobile-menu-socials" aria-label="SapienX social links">
               <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a>
@@ -138,7 +151,7 @@ export default function Home() {
             </div>
           </div>
         </nav>
-        <a className="button button--small nav-cta" href="#pricing">Start Free <Arrow /></a>
+        <a className="button button--small nav-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
         <button className={`menu-toggle ${menuOpen ? "open" : ""}`} type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <span /><span />
         </button>
@@ -155,10 +168,10 @@ export default function Home() {
         <div className="hero-copy">
           <div className="eyebrow pill">AI WORKFORCE PLATFORM</div>
           <h1 id="hero-title">AI WORKERS.<br /><span>REAL IMPACT.</span></h1>
-          <p>Deploy digital workers that think, act,<br className="desktop-only" /> and deliver—at scale.</p>
+          <p>Build, deploy, manage and supervise<br className="desktop-only" /> teams of digital workers.</p>
           <div className="hero-action-stack">
             <div className="hero-actions">
-              {proOfferSeconds > 0 ? <a className="button button--pro hero-offer-cta" href="#pricing"><time className="button-countdown" dateTime={`PT${proOfferSeconds}S`}>{proOfferTime}</time><span>Claim Free Pro</span><Arrow /></a> : <a className="button" href="#pricing">Start Free <Arrow /></a>}
+              <a className="button hero-offer-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
               <button className="button button--ghost" type="button" onClick={() => setDemoOpen(true)}><b className="play">▶</b> Watch Demo</button>
             </div>
             <div className="hero-socials" aria-label="SapienX social links">
@@ -168,23 +181,24 @@ export default function Home() {
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
             </div>
           </div>
-          <div className="stats" aria-label="Platform statistics">
-            <div><i>♧</i><span><strong>10K+</strong><small>Active Agents</small></span></div>
-            <div><i>◉</i><span><strong>1M+</strong><small>Tasks Completed</small></span></div>
-            <div><i>⬡</i><span><strong>99.9%</strong><small>Uptime</small></span></div>
+          <p className="hero-trust">Self-hosted <span>·</span> BYOK <span>·</span> One-click deployment <span>·</span> Powered by OpenClaw</p>
+          <div className="stats" aria-label="AgentOS deployment advantages">
+            <div><i>◈</i><span><strong>Private runtime</strong><small>Your infrastructure</small></span></div>
+            <div><i>◎</i><span><strong>Persistent workspaces</strong><small>Your operational context</small></span></div>
+            <div><i>⬡</i><span><strong>Mobile + desktop</strong><small>Stay in control anywhere</small></span></div>
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true"><span /></div>
       </section>
 
-      <section className="trusted page-pad" aria-label="Trusted teams">
-        <p>TRUSTED BY INNOVATIVE TEAMS</p>
+      <section className="trusted page-pad" aria-label="AgentOS foundations">
+        <p>BUILT FOR OWNERSHIP AND CONTROL</p>
         <div className="logo-row">
-          <span><b>✣</b> OrdinalMaxi</span>
-          <span><b>Ⓒ</b> CoinCollect</span>
-          <span className="sapien">SapienX</span>
-          <span><b>◎</b> echo</span>
-          <span><b>◉</b> Orbital Labs</span>
+          <span><b>◈</b> Open-source foundation</span>
+          <span><b>⌁</b> Railway deployment</span>
+          <span className="sapien">Bring your own models</span>
+          <span><b>◎</b> Private workspaces</span>
+          <span><b>◉</b> Regular product updates</span>
         </div>
       </section>
 
@@ -197,6 +211,11 @@ export default function Home() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="how-it-works page-pad" id="how-it-works" aria-labelledby="how-it-works-title">
+        <div className="how-it-works-intro"><div className="section-kicker">HOW IT WORKS</div><h2 id="how-it-works-title">From workforce design<br />to <span>reviewable work.</span></h2><p>Your infrastructure. Your models. Your digital workforce.</p></div>
+        <ol className="workflow-steps">{workflowSteps.map(([number, title, copy]) => <li key={number}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}</ol>
       </section>
 
       <section className="team page-pad" id="company">
@@ -317,6 +336,11 @@ export default function Home() {
         </div>
       )}
 
+      <section className="use-cases page-pad" id="use-cases" aria-labelledby="use-cases-title">
+        <div className="use-cases-copy"><div className="eyebrow">REAL OPERATIONS, NOT DEMOS</div><h2 id="use-cases-title">A workforce for the work<br />already on <span>your plate.</span></h2><p>AgentOS gives focused teams a place to run the recurring work that keeps a business moving.</p><a className="button button--ghost" href="#pricing">Explore plans <Arrow /></a></div>
+        <div className="use-case-grid">{useCases.map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p><i aria-hidden="true">↗</i></article>)}</div>
+      </section>
+
       <section className="pricing page-pad" id="pricing" aria-labelledby="pricing-title">
         <div className="section-kicker">DIGITAL WORKFORCE PLANS</div>
         <h2 className="pricing-title" id="pricing-title">Start free. Scale your<span className="mobile-line-break"><br /></span> <span className="pricing-title-accent" style={{ color: "var(--gold-soft)" }}>digital workforce.</span></h2>
@@ -327,16 +351,17 @@ export default function Home() {
           {yearly && <span>2 months free</span>}
         </div>
         <p className="pricing-includes">Every plan includes <b>agent creation</b>, customization, tools, integrations, channels, memory, goals, policies and BYOK.</p>
+        <p className="pricing-cost-note"><b>Clear costs, separate layers.</b> AgentOS plans cover the software and workforce controls. Hosting and model usage are billed separately.</p>
         <div className="pricing-grid">
           {[...plans].sort((first, second) => Number(Boolean(second.popular)) - Number(Boolean(first.popular))).map((plan) => (
-            <article className={`price-card ${plan.popular ? "popular" : ""} ${plan.limitedOffer && proOfferSeconds > 0 ? "limited-offer" : ""} ${!(plan.available || (plan.limitedOffer && proOfferSeconds > 0)) ? "is-unavailable" : ""}`} key={plan.name}>
-              {plan.popular && <div className={`popular-label ${plan.limitedOffer && proOfferSeconds > 0 ? "offer-label" : ""}`}>{plan.limitedOffer && proOfferSeconds > 0 ? <><b>Free Forever</b><small>No card required</small></> : "Most Popular"}</div>}
+            <article className={`price-card ${plan.popular ? "popular" : ""} ${plan.limitedOffer ? "limited-offer" : ""} ${!(plan.available || plan.limitedOffer) ? "is-unavailable" : ""}`} key={plan.name}>
+              {plan.popular && <div className="popular-label offer-label"><b>Launch offer</b><small>Pro free with first deployment</small></div>}
               <div className="plan-header"><h3>{plan.name}</h3><p>{plan.description}</p></div>
-              {plan.limitedOffer && proOfferSeconds > 0 ? <><div className="price price--offer"><strong>FREE</strong><span>for your first Pro launch</span><span className="old-price"><s>$79</s><small>/month</small></span></div><div className="pro-countdown"><span>Launch offer ends in</span><time dateTime={`PT${proOfferSeconds}S`}>{proOfferTime}</time></div></> : <><div className="price"><sup>$</sup><strong>{yearly ? plan.yearly : plan.monthly}</strong>{plan.suffix === "/mo" ? <span>/month</span> : <span>forever</span>}</div><small className="price-billing">{plan.suffix === "forever" ? "No card required" : yearly ? "Billed annually" : "Billed monthly"}</small></>}
+              {plan.limitedOffer ? <><div className="price price--offer"><strong>FREE</strong><span>with your first deployment</span><span className="old-price"><s>$79</s><small>/month</small></span></div><p className="launch-offer-note">No countdown. No card required for the launch offer.</p></> : <><div className="price"><sup>$</sup><strong>{yearly ? plan.yearly : plan.monthly}</strong>{plan.suffix === "/mo" ? <span>/month</span> : <span>forever</span>}</div><small className="price-billing">{plan.suffix === "forever" ? "No card required" : yearly ? "Billed annually" : "Billed monthly"}</small></>}
               {plan.note && <p className="plan-note">✦ {plan.note}</p>}
               {plan.railwayCredit && <div className="railway-credit"><b>+$5</b><span>Railway hosting credit</span><abbr title="Included credit for Railway hosting." data-tooltip="Included credit for Railway hosting." tabIndex={0}>i</abbr></div>}
               <ul>{plan.features.map((feature) => <li key={feature.label}>✓ {feature.tooltip ? <abbr title={feature.tooltip} data-tooltip={feature.tooltip} tabIndex={0}>{feature.label}</abbr> : <span>{feature.label}</span>}</li>)}</ul>
-              {(plan.available || (plan.limitedOffer && proOfferSeconds > 0)) ? <a href={plan.href || "#top"} target={plan.href ? "_blank" : undefined} rel={plan.href ? "noreferrer" : undefined} className={plan.limitedOffer ? "button button--pro" : "button button--dark"}>{plan.limitedOffer && proOfferSeconds > 0 && <time className="button-countdown" dateTime={`PT${proOfferSeconds}S`}>{proOfferTime}</time>}<span>{plan.cta}</span><Arrow /></a> : <span className="button button--disabled" aria-disabled="true" title="Coming soon">{plan.cta}<small>Coming soon</small></span>}
+              {(plan.available || plan.limitedOffer) ? <a href={plan.href || "#top"} target={plan.href ? "_blank" : undefined} rel={plan.href ? "noreferrer" : undefined} className={plan.limitedOffer ? "button button--pro" : "button button--dark"}><span>{plan.cta}</span><Arrow /></a> : <span className="button button--disabled" aria-disabled="true" title="Coming soon">{plan.cta}<small>Coming soon</small></span>}
             </article>
           ))}
         </div>
@@ -344,10 +369,15 @@ export default function Home() {
         <div className="enterprise-strip"><div><strong>Need dedicated infrastructure, SAML/SCIM, SLA or custom implementation?</strong><span>Bring AgentOS into your operating model with a tailored rollout.</span></div><a className="button button--ghost" href="#resources">Talk to Sales <Arrow /></a></div>
       </section>
 
+      <section className="faq page-pad" id="faq" aria-labelledby="faq-title">
+        <div className="faq-intro"><div className="section-kicker">FAQ</div><h2 id="faq-title">The details that<br />matter <span>before you deploy.</span></h2></div>
+        <div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+      </section>
+
       <section className="final-cta page-pad">
         <div className="cta-panel">
-          <div><h2>Ready to build your<br />AI workforce?</h2><p>Join thousands running agents<br />like a company.</p></div>
-          {proOfferSeconds > 0 ? <a className="button button--pro footer-offer-cta" href="#pricing"><time className="button-countdown" dateTime={`PT${proOfferSeconds}S`}>{proOfferTime}</time><span>Claim Free Pro</span><Arrow /></a> : <a className="button" href="#pricing">Start Free Now <Arrow /></a>}
+          <div><h2>Ready to build your<br />AI workforce?</h2><p>Own the infrastructure, models and<br />workflow behind your digital team.</p></div>
+          <a className="button footer-offer-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
           <div className="cta-video" aria-hidden="true">
             <video autoPlay muted loop playsInline preload="metadata">
               <source src="/assets/footer-loop.webm" type="video/webm" />
