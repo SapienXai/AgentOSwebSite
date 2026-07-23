@@ -203,8 +203,8 @@ export default function Home() {
         <div className="product-panel">
           <div className="product-copy">
             <div className="eyebrow">SEE IT IN ACTION</div>
-            <h2>One platform.<br />Every agent.<br /><span>Total control.</span></h2>
-            <p>Manage context, tools, accounts, models and tasks in a single, powerful workspace.</p>
+            <h2>One platform.<br className="product-desktop-line-break" /> Every agent.<br /><span style={{ color: "var(--gold-soft)" }}>Total control.</span></h2>
+            <p>Manage context, tools, accounts, models<span className="mobile-line-break"><br /></span> and tasks in a single, powerful workspace.</p>
             <button type="button" className="button button--ghost" onClick={() => setDemoOpen(true)}><b className="play gold">▶</b> Watch Full Demo <Arrow /></button>
           </div>
           <div className="dashboard" id="dashboard" aria-label="AgentOS mission control preview">
@@ -255,7 +255,7 @@ export default function Home() {
 
       <section className="pricing page-pad" id="pricing" aria-labelledby="pricing-title">
         <div className="section-kicker">DIGITAL WORKFORCE PLANS</div>
-        <h2 className="pricing-title" id="pricing-title">Start free. Scale your<span className="mobile-line-break"><br /></span> digital workforce.</h2>
+        <h2 className="pricing-title" id="pricing-title">Start free. Scale your<span className="mobile-line-break"><br /></span> <span className="pricing-title-accent" style={{ color: "var(--gold-soft)" }}>digital workforce.</span></h2>
         <p className="section-sub">Build your first AI team today,<span className="mobile-line-break"><br /></span> then expand as your operations grow.</p>
         <div className={`billing-toggle ${yearly ? "annual" : ""}`} role="group" aria-label="Billing cycle">
           <button type="button" aria-pressed={!yearly} className={!yearly ? "active" : ""} onClick={() => setYearly(false)}>Monthly</button>

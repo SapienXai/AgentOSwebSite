@@ -37,7 +37,8 @@ test("server-renders the AgentOS landing page", async () => {
   );
   assert.match(html, /AI WORKERS\./);
   assert.match(html, /REAL IMPACT\./);
-  assert.match(html, /Start free\. Scale your digital workforce\./);
+  assert.match(html, /Start free\. Scale your/);
+  assert.match(html, /digital workforce\./);
   assert.match(html, /href="#pricing"/);
   assert.match(html, /railway\.com\/deploy\/agentos-1/);
 });
