@@ -32,6 +32,7 @@ main { min-height: 100vh; background: radial-gradient(circle at 68% 13%, rgba(23
 .nav-shell nav { display: flex; justify-content: center; font-size: 12px; color: #e5e4e1; }
 .nav-links { display: flex; align-items: center; justify-content: center; gap: clamp(30px, 5vw, 58px); }
 .nav-links a { transition: color .2s ease; }
+.nav-links a > span { display: none; }
 .nav-links a:hover { color: var(--gold-soft); }
 .mobile-menu-intro, .mobile-menu-footer { display: none; }
 .nav-cta { justify-self: end; }
@@ -394,7 +395,7 @@ main { min-height: 100vh; background: radial-gradient(circle at 68% 13%, rgba(23
   .mobile-menu-intro strong { font-size: 24px; line-height: 1.08; letter-spacing: -1px; }
   .nav-links { display: flex; flex-direction: column; align-items: stretch; gap: 0; margin: 0 18px; border-top: 1px solid rgba(255,255,255,.1); }
   .nav-links a { display: flex; align-items: center; justify-content: space-between; padding: 16px 6px; font-size: 18px; font-weight: 650; border-bottom: 1px solid rgba(255,255,255,.09); opacity: 0; transform: translateY(-10px); transition: opacity .28s ease, transform .28s ease, color .2s ease; }
-  .nav-links a span { color: var(--gold-soft); font-size: 19px; }
+  .nav-links a > span { display: inline; color: var(--gold-soft); font-size: 19px; }
   .nav-shell nav.open .nav-links a { opacity: 1; transform: translateY(0); }
   .nav-shell nav.open .nav-links a:nth-child(2) { transition-delay: .04s; }
   .nav-shell nav.open .nav-links a:nth-child(3) { transition-delay: .08s; }
@@ -403,6 +404,7 @@ main { min-height: 100vh; background: radial-gradient(circle at 68% 13%, rgba(23
   .mobile-menu-footer { display: grid; gap: 12px; margin-top: auto; padding: 20px 24px 24px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.26)); }
   .mobile-menu-cta { width: 100%; min-height: 48px; justify-content: space-between; padding: 0 19px; }
   .mobile-menu-footer small { color: #77736c; font-size: 9px; letter-spacing: .3px; text-align: center; }
+  .mobile-menu-socials { margin: 0 auto; }
   .nav-cta { display: none; }
   .menu-toggle { display: block; }
   .menu-toggle.open span:first-child { transform: translateY(3.5px) rotate(45deg); }

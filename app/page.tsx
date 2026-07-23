@@ -106,6 +106,12 @@ export default function Home() {
           <div className="mobile-menu-footer">
             <a className="button mobile-menu-cta" href="#pricing" onClick={() => setMenuOpen(false)}>Start Free <Arrow /></a>
             <small>© 2026 AgentOS · Built for ambitious teams</small>
+            <div className="hero-socials mobile-menu-socials" aria-label="SapienX social links">
+              <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a>
+              <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a>
+              <a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a>
+              <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
+            </div>
           </div>
         </nav>
         <a className="button button--small nav-cta" href="#pricing">Start Free <Arrow /></a>
