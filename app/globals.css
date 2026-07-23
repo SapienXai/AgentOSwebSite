@@ -101,12 +101,14 @@ main { min-height: 100vh; background: radial-gradient(circle at 68% 13%, rgba(23
 .scroll-cue span { width: 2px; height: 5px; border-radius: 99px; background: white; animation: scrollCue 1.8s infinite; }
 @keyframes scrollCue { 0%, 100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(7px); opacity: 1; } }
 
-.trusted { height: 72px; text-align: center; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-.trusted > p { color: #676767; font-size: 8px; letter-spacing: 4px; margin: 0 0 10px; }
-.logo-row { display: flex; justify-content: center; align-items: center; gap: clamp(45px, 7vw, 83px); color: #757575; font-size: 16px; white-space: nowrap; }
-.logo-row span { display: inline-flex; align-items: center; gap: 7px; }
-.logo-row b { font-size: 22px; color: #777; }
-.logo-row .sapien { font-size: 20px; }
+.trusted { height: 66px; text-align: center; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-left: 0; padding-right: 0; }
+.trusted > p { color: #676767; font-size: 7px; letter-spacing: 3.2px; margin: 0 0 8px; }
+.logo-row { width: max-content; display: flex; align-items: center; color: #7e7c78; white-space: nowrap; animation: foundationMarquee 24s linear infinite; }
+.logo-row-group { display: flex; align-items: center; gap: clamp(24px, 4vw, 48px); padding-right: clamp(24px, 4vw, 48px); }
+.logo-row span { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; }
+.logo-row b { font-size: 14px; color: rgba(240,173,67,.7); }
+.logo-row .sapien { font-size: 11px; }
+@keyframes foundationMarquee { to { transform: translateX(-50%); } }
 
 .feature-strip { padding-top: 5px; padding-bottom: 20px; }
 .feature-panel { min-height: 81px; border: 1px solid rgba(231,172,75,.2); border-radius: 11px; display: grid; grid-template-columns: repeat(4, 1fr); background: linear-gradient(120deg, rgba(255,255,255,.025), rgba(255,255,255,.008)); overflow: hidden; }
@@ -502,10 +504,11 @@ main { min-height: 100vh; background: radial-gradient(circle at 68% 13%, rgba(23
   .scroll-cue { bottom: 10px; z-index: 3; }
   @keyframes heroFloat { 0%,100% { transform: translateX(-4px) scale(1.02); } 50% { transform: translateX(7px) scale(1.05); } }
 
-  .trusted { height: 110px; padding-left: 0; padding-right: 0; }
-  .trusted > p { margin-bottom: 18px; }
-  .logo-row { justify-content: flex-start; gap: 45px; width: max-content; animation: logoMarquee 18s linear infinite alternate; padding-left: 24px; }
-  @keyframes logoMarquee { to { transform: translateX(calc(-100% + 100vw - 24px)); } }
+  .trusted { height: 91px; }
+  .trusted > p { margin-bottom: 13px; }
+  .logo-row { animation-duration: 19s; }
+  .logo-row-group { gap: 28px; padding-right: 28px; }
+  .logo-row span, .logo-row .sapien { font-size: 10px; }
 
   .feature-strip { padding-bottom: 34px; }
   .feature-panel { grid-template-columns: 1fr 1fr; }

@@ -106,6 +106,13 @@ const faqs = [
 ];
 
 const trustItems = ["Self-hosted", "BYOK", "One-click deployment", "Powered by OpenClaw"];
+const foundationItems = [
+  ["◈", "Open-source foundation"],
+  ["⌁", "Railway deployment"],
+  ["", "Bring your own models"],
+  ["◎", "Private workspaces"],
+  ["◉", "Regular product updates"],
+];
 
 export default function Home() {
   const [yearly, setYearly] = useState(false);
@@ -196,11 +203,8 @@ export default function Home() {
       <section className="trusted page-pad" aria-label="AgentOS foundations">
         <p>BUILT FOR OWNERSHIP AND CONTROL</p>
         <div className="logo-row">
-          <span><b>◈</b> Open-source foundation</span>
-          <span><b>⌁</b> Railway deployment</span>
-          <span className="sapien">Bring your own models</span>
-          <span><b>◎</b> Private workspaces</span>
-          <span><b>◉</b> Regular product updates</span>
+          <div className="logo-row-group">{foundationItems.map(([icon, label]) => <span key={label} className={icon ? "" : "sapien"}>{icon && <b>{icon}</b>}{label}</span>)}</div>
+          <div className="logo-row-group" aria-hidden="true">{foundationItems.map(([icon, label]) => <span key={`duplicate-${label}`} className={icon ? "" : "sapien"}>{icon && <b>{icon}</b>}{label}</span>)}</div>
         </div>
       </section>
 
