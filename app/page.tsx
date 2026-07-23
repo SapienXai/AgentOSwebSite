@@ -93,16 +93,16 @@ const useCases = [
 ];
 
 const faqs = [
-  ["What is AgentOS?", "AgentOS helps you build, deploy, manage and supervise teams of digital workers from one workspace."],
-  ["Is AgentOS self-hosted?", "You deploy AgentOS into your own hosting environment, with Railway available as a fast starting point."],
-  ["What does Railway charge for?", "Railway bills the infrastructure that runs your deployment. It is separate from AgentOS software plans."],
-  ["Are AI model costs included?", "No. You bring your own model provider keys, so model usage is billed by your chosen provider."],
-  ["Where is my data stored?", "Your workspace data lives with your deployment and connected services, not in a shared AgentOS runtime."],
-  ["Do I need OpenClaw?", "AgentOS is built around the OpenClaw ecosystem and gives you a focused interface for operating your workforce."],
-  ["Can I use my own model providers?", "Yes. AgentOS is designed for bring-your-own-key model access."],
-  ["How do AgentOS plan limits work?", "Plans define the software workspace, worker and operational controls available to you. Hosting and model usage remain separate."],
-  ["Can I access AgentOS from mobile?", "Yes. The workspace is designed to stay accessible from both mobile and desktop."],
-  ["Is AgentOS open source?", "AgentOS is built on an open-source foundation. Check the repository for the current source and release details."],
+  ["What is AgentOS?", "AgentOS is an operations platform for building and running teams of digital workers. From one workspace, you can create agents, give them context, connect tools and accounts, assign real work, monitor activity and supervise important actions."],
+  ["Is AgentOS self-hosted?", "Yes. AgentOS runs inside your own deployment environment, giving you greater control over your infrastructure, data and model providers. Railway offers the fastest one-click deployment option, but AgentOS is not limited to Railway."],
+  ["What does Railway charge for?", "Railway charges for the infrastructure used to run your AgentOS deployment, including compute, storage and network usage. Railway hosting costs are separate from AgentOS software plans and AI model usage."],
+  ["Are AI model costs included?", "No. AgentOS uses a bring-your-own-provider model, so AI usage is billed directly by the provider you connect. This gives you control over which models you use, how much you spend and where your requests are processed."],
+  ["Where is my data stored?", "Your AgentOS configuration, workspaces, sessions and operational data are stored within your own deployment environment and connected services. AgentOS does not place every customer inside a shared runtime."],
+  ["Do I need OpenClaw to use AgentOS?", "AgentOS is powered by OpenClaw and includes the OpenClaw runtime as part of the deployment. You do not need to install or manage OpenClaw separately when using the standard AgentOS deployment."],
+  ["Can I use my own AI model providers?", "Yes. AgentOS supports bring-your-own-key access, allowing you to connect supported model providers and choose the models that fit each worker, task and budget."],
+  ["How do AgentOS plan limits work?", "AgentOS plans define the software features and operational capacity available to your workspace, such as workers, workspaces, team access, automation controls and advanced management features. Hosting costs and AI model usage are billed separately."],
+  ["Can I use AgentOS on mobile?", "Yes. AgentOS is designed to work across desktop, tablet and mobile browsers, so you can monitor workers, review activity and manage operations from wherever you are."],
+  ["Is AgentOS open source?", "AgentOS is built on an open-source foundation, including the OpenClaw runtime. Source availability, licensing terms, supported features and release information can be reviewed in the official GitHub repository."],
 ];
 
 const trustItems = ["Self-hosted", "BYOK", "One-click deployment", "Powered by OpenClaw"];
@@ -157,6 +157,7 @@ export default function Home() {
               <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a>
               <a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a>
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
+              <a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><span className="social-github">GH</span></a>
             </div>
           </div>
         </nav>
@@ -189,6 +190,7 @@ export default function Home() {
               <a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a>
               <a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a>
               <a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a>
+              <a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><span className="social-github">GH</span></a>
             </div>
           </div>
           <div className="stats" aria-label="AgentOS deployment advantages">
@@ -393,7 +395,7 @@ export default function Home() {
       </section>
 
       <footer className="footer page-pad" id="resources">
-        <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="SapienX social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a></div></div>
+        <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="SapienX social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><span className="social-globe">◎</span></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><span className="social-telegram">➤</span></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><span className="social-github">GH</span></a></div></div>
         <div className="footer-links"><h4>Product</h4><a href="#top">Overview</a><a href="#solutions">Features</a><a href="#product">Integrations</a><a href="#top">Updates</a></div>
         <div className="footer-links"><h4>Solutions</h4><a href="#solutions">By Use Case</a><a href="#solutions">By Industry</a><a href="#top">Templates</a><a href="#top">Customers</a></div>
         <div className="footer-links"><h4>Resources</h4><a href="#top">Docs</a><a href="#top">Guides</a><a href="#top">Blog</a><a href="#top">Help Center</a></div>
