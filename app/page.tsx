@@ -32,10 +32,15 @@ function HeroParticles() {
   );
 }
 
-function Logo({ compact = false }: { compact?: boolean }) {
+function Logo({ compact = false, animated = false }: { compact?: boolean; animated?: boolean }) {
   return (
-    <a className={`brand ${compact ? "brand--compact" : ""}`} href="#top" aria-label="AgentOS home">
-      <img src="/assets/agentlogo.webp" alt="" />
+    <a className={`brand ${compact ? "brand--compact" : ""} ${animated ? "brand--animated" : ""}`} href="#top" aria-label="AgentOS home">
+      {animated ? (
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcSet="/assets/agentlogo.webp" />
+          <img src="/assets/agentos.gif" alt="" />
+        </picture>
+      ) : <img src="/assets/agentlogo.webp" alt="" />}
       <span>Agent<span>OS</span></span>
     </a>
   );
@@ -85,7 +90,7 @@ export default function Home() {
   return (
     <main id="top">
       <header className="nav-shell">
-        <Logo />
+        <Logo animated />
         <nav className={menuOpen ? "open" : ""} aria-label="Main navigation">
           <a href="#product" onClick={() => setMenuOpen(false)}>Product</a>
           <a href="#solutions" onClick={() => setMenuOpen(false)}>Solutions</a>
@@ -250,8 +255,8 @@ export default function Home() {
 
       <section className="pricing page-pad" id="pricing" aria-labelledby="pricing-title">
         <div className="section-kicker">DIGITAL WORKFORCE PLANS</div>
-        <h2 className="pricing-title" id="pricing-title">Start free. Scale your digital workforce.</h2>
-        <p className="section-sub">Build your first AI team today, then expand as your operations grow.</p>
+        <h2 className="pricing-title" id="pricing-title">Start free. Scale your<span className="mobile-line-break"><br /></span> digital workforce.</h2>
+        <p className="section-sub">Build your first AI team today,<span className="mobile-line-break"><br /></span> then expand as your operations grow.</p>
         <div className={`billing-toggle ${yearly ? "annual" : ""}`} role="group" aria-label="Billing cycle">
           <button type="button" aria-pressed={!yearly} className={!yearly ? "active" : ""} onClick={() => setYearly(false)}>Monthly</button>
           <button type="button" aria-pressed={yearly} className={yearly ? "active" : ""} onClick={() => setYearly(true)}>Annual</button>
