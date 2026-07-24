@@ -24,16 +24,15 @@ npm test
 npx tsc --noEmit
 ```
 
-`npm test` performs a production build, renders the landing page through the
-Cloudflare Worker entry point, and verifies that the Sites hosting
-configuration is included in the deployment output.
+`npm test` performs a production build and verifies the landing-page content,
+metadata, and Next.js deployment output.
 
 ## Project structure
 
 - `app/` — landing page, metadata, and global styles
 - `public/assets/` — AgentOS imagery and video assets
-- `worker/` — Cloudflare Worker entry point
-- `.openai/hosting.json` — Sites project and optional storage bindings
+- `worker/` — legacy Cloudflare Worker entry point (not used by Vercel)
+- `.openai/hosting.json` — legacy Sites configuration (not used by Vercel)
 - `tests/` — rendered HTML and deployment-package checks
 
 The current site does not use D1 or R2. Their logical bindings remain `null` in
