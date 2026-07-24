@@ -4,6 +4,71 @@ import { useEffect, useRef, useState } from "react";
 
 const Arrow = () => <span aria-hidden="true">→</span>;
 
+type DemoKind = "deployment" | "providers" | "runtime" | "foundation";
+
+function DemoCursor() {
+  return <span className="demo-cursor" aria-hidden="true"><svg viewBox="0 0 20 24" fill="none"><path d="M3 2.5 16.2 14l-6 1.1-2.8 5.8L3 2.5Z" fill="#f6f2e9" stroke="#17130d" strokeWidth="1.4" /></svg></span>;
+}
+
+function DeploymentDemo() {
+  return <div className="micro-demo deployment-demo" aria-hidden="true">
+    <div className="demo-window deployment-window">
+      <div className="demo-window-head"><span className="demo-window-mark">◈</span><span>Railway deployment</span><i /></div>
+      <div className="deployment-body">
+        <span className="deployment-project">agentos / production</span>
+        <button type="button" tabIndex={-1} className="deploy-button"><span className="deploy-label">Deploy on Railway</span><span className="deploy-loading"><b /> Deploying...</span><span className="deploy-success">✓ AgentOS is live <i /></span></button>
+        <span className="deploy-progress"><b /></span>
+      </div>
+    </div>
+    <DemoCursor />
+  </div>;
+}
+
+function ProviderKeysDemo() {
+  return <div className="micro-demo providers-demo" aria-hidden="true">
+    <div className="provider-grid">
+      <span className="provider-card provider-card--openai"><b>◌</b>OpenAI<i>✓</i></span>
+      <span className="provider-card provider-card--anthropic"><b>Ａ</b>Anthropic<i>✓</i></span>
+      <span className="provider-card provider-card--gemini"><b>✦</b>Gemini<i>✓</i></span>
+      <span className="provider-card provider-card--xai"><b>𝕏</b>xAI<i>✓</i></span>
+    </div>
+    <div className="key-connect-row"><span className="key-input">sk-<b>••••••••••••</b><i /></span><span className="key-connect">Connect</span></div>
+    <DemoCursor />
+  </div>;
+}
+
+function PrivateRuntimeDemo() {
+  return <div className="micro-demo runtime-demo" aria-hidden="true">
+    <div className="runtime-window">
+      <div className="workspace-select"><span>Growth Workspace</span><b>⌄</b></div>
+      <div className="workspace-menu"><span>Growth</span><span>Operations</span><span>Research</span></div>
+      <div className="runtime-agents"><span><b>◈</b>Scout</span><span><b>⌁</b>Operator</span><span><b>◎</b>Analyst</span></div>
+      <div className="agent-menu"><span>Context Engine</span><span>Workspace settings</span></div>
+      <div className="context-panel"><strong>▣ Private to this workspace</strong><span>Knowledge</span><span>Memory</span><span>Policies</span></div>
+    </div>
+    <DemoCursor />
+  </div>;
+}
+
+function ClawMark({ small = false }: { small?: boolean }) {
+  return <svg className={`claw-mark ${small ? "claw-mark--small" : ""}`} viewBox="0 0 44 44" fill="none"><path d="M18.5 13.2c-5.8-6.2-11.5-2.4-9.6 3.6 1.2 3.8 5.3 5.6 9.6 3.8M25.5 13.2c5.8-6.2 11.5-2.4 9.6 3.6-1.2 3.8-5.3 5.6-9.6 3.8M15 25.5c2.2 5.4 11.8 5.4 14 0M22 13v15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+
+function OpenFoundationDemo() {
+  return <div className="micro-demo foundation-demo" aria-hidden="true">
+    <span className="network-line network-line--one" /><span className="network-line network-line--two" /><span className="network-line network-line--three" />
+    <span className="foundation-node foundation-node--one"><ClawMark small /></span><span className="foundation-node foundation-node--two"><ClawMark small /></span><span className="foundation-node foundation-node--three"><ClawMark small /></span>
+    <span className="foundation-core"><ClawMark /></span><DemoCursor />
+  </div>;
+}
+
+function FeatureMicroDemo({ kind }: { kind: DemoKind }) {
+  if (kind === "deployment") return <DeploymentDemo />;
+  if (kind === "providers") return <ProviderKeysDemo />;
+  if (kind === "runtime") return <PrivateRuntimeDemo />;
+  return <OpenFoundationDemo />;
+}
+
 const heroParticleConfig = [
   ["42%", "22%", 5, -2.1], ["49%", "67%", 3, -4.4], ["55%", "13%", 7, -1.2],
   ["58%", "82%", 4, -5.8], ["62%", "27%", 3, -3.1], ["65%", "61%", 7, -6.4],
@@ -47,10 +112,10 @@ function Logo({ compact = false, animated = false }: { compact?: boolean; animat
 }
 
 const features = [
-  { icon: "◈", title: "One-click deployment", copy: "Launch your own AgentOS workspace on Railway." },
-  { icon: "◇", title: "Bring your own keys", copy: "Use the model providers and accounts you trust." },
-  { icon: "⌾", title: "Private runtime", copy: "Keep your workspaces and operational context under your control." },
-  { icon: "▥", title: "Open foundation", copy: "Built around the OpenClaw ecosystem." },
+  { icon: "◈", title: "One-click deployment", copy: "Launch your own AgentOS workspace on Railway.", demo: "deployment" as const },
+  { icon: "◇", title: "Bring your own keys", copy: "Use the model providers and accounts you trust.", demo: "providers" as const },
+  { icon: "⌾", title: "Private runtime", copy: "Keep your workspaces and operational context under your control.", demo: "runtime" as const },
+  { icon: "▥", title: "Open foundation", copy: "Built around the OpenClaw ecosystem.", demo: "foundation" as const },
 ];
 
 const workers = [
@@ -215,8 +280,8 @@ export default function Home() {
         <div className="feature-panel">
           {features.map((feature) => (
             <article key={feature.title}>
-              <i>{feature.icon}</i>
-              <div><h3>{feature.title}</h3><p>{feature.copy}</p></div>
+              <div className="feature-copy"><i>{feature.icon}</i><div><h3>{feature.title}</h3><p>{feature.copy}</p></div></div>
+              <FeatureMicroDemo kind={feature.demo} />
             </article>
           ))}
         </div>
