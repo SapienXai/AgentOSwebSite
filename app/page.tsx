@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-html-link-for-pages */
 
 import { useEffect, useRef, useState } from "react";
 
@@ -209,11 +210,11 @@ export default function Home() {
             <strong>Build your workforce<br />without the overhead.</strong>
           </div>
           <div className="nav-links">
-            <a href="#product" onClick={() => setMenuOpen(false)}>Product <Arrow /></a>
-            <a href="#how-it-works" onClick={() => setMenuOpen(false)}>How it works <Arrow /></a>
-            <a href="#resources" onClick={() => setMenuOpen(false)}>Resources <Arrow /></a>
+            <a href="/product" onClick={() => setMenuOpen(false)}>Product <Arrow /></a>
+            <a href="/solutions/solo-founders" onClick={() => setMenuOpen(false)}>Solutions <Arrow /></a>
+            <a href="/docs" onClick={() => setMenuOpen(false)}>Resources <Arrow /></a>
             <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing <Arrow /></a>
-            <a href="#company" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
+            <a href="/about" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
           </div>
           <div className="mobile-menu-footer">
             <a className="button mobile-menu-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
@@ -461,12 +462,12 @@ export default function Home() {
       </section>
 
       <footer className="footer page-pad" id="resources">
-        <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="SapienX social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on Telegram"><img className="social-icon" src="/assets/social/telegram.svg" alt="" /></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="SapienX on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="SapienX on LinkedIn"><span className="social-linkedin">in</span></a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><img className="social-icon" src="/assets/social/github.svg" alt="" /></a></div></div>
-        <div className="footer-links"><h4>Product</h4><a href="#top">Overview</a><a href="#solutions">Features</a><a href="#product">Integrations</a><a href="#top">Updates</a></div>
-        <div className="footer-links"><h4>Solutions</h4><a href="#solutions">By Use Case</a><a href="#solutions">By Industry</a><a href="#top">Templates</a><a href="#top">Customers</a></div>
-        <div className="footer-links"><h4>Resources</h4><a href="#top">Docs</a><a href="#top">Guides</a><a href="#top">Blog</a><a href="#top">Help Center</a></div>
-        <div className="footer-links"><h4>Company</h4><a href="#company">About Us</a><a href="#company">Careers</a><a href="#company">Contact</a><a href="#company">Privacy</a></div>
-        <div className="footer-credit"><span>Designed and built by</span><strong>AI agents, powered by AgentOS.</strong><i>✦</i></div>
+        <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="AgentOS social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="AgentOS website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="AgentOS on Telegram"><img className="social-icon" src="/assets/social/telegram.svg" alt="" /></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="AgentOS on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="AgentOS on LinkedIn"><span className="social-linkedin">in</span></a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><img className="social-icon" src="/assets/social/github.svg" alt="" /></a></div></div>
+        <div className="footer-links"><h4>Product</h4><a href="/product">Overview</a><a href="/features">Features</a><a href="/#pricing">Pricing</a><a href="/integrations">Integrations</a><a href="/changelog">Changelog</a></div>
+        <div className="footer-links"><h4>Solutions</h4><a href="/solutions/solo-founders">Solo Founders</a><a href="/solutions/automation-agencies">Automation Agencies</a><a href="/solutions/startup-teams">Startup Teams</a><a href="/solutions/web3-communities">Web3 &amp; Communities</a></div>
+        <div className="footer-links"><h4>Resources</h4><a href="/docs">Documentation</a><a href="/deployment-guide">Deployment Guide</a><a href="/openclaw-setup">OpenClaw Setup</a><a href="/templates">Agent Templates</a><a href="/faq">FAQ</a><a href="/support">Support</a></div>
+        <div className="footer-links"><h4>Company</h4><a href="/about">About AgentOS</a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer">GitHub</a><a href="/contact">Contact</a><a href="/security">Security</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+        <div className="footer-credit"><span>© 2026 AgentOS. All rights reserved.</span><strong>Designed and built by AI agents, powered by AgentOS.</strong><i>✦</i></div>
       </footer>
     </main>
   );
