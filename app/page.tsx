@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const Arrow = () => <span aria-hidden="true">→</span>;
+const deployUrl = "https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic";
 
 type DemoKind = "deployment" | "providers" | "runtime" | "foundation";
 
@@ -68,6 +69,23 @@ function FeatureMicroDemo({ kind }: { kind: DemoKind }) {
   if (kind === "providers") return <ProviderKeysDemo />;
   if (kind === "runtime") return <PrivateRuntimeDemo />;
   return <OpenFoundationDemo />;
+}
+
+function DeployGuideModal({ onClose }: { onClose: () => void }) {
+  const steps = [
+    ["Deploy on Railway", "Launch your private AgentOS instance.", "railway"],
+    ["Add your model", "Connect your preferred provider and API key.", "provider"],
+    ["Start working", "Your workspace and agent are ready for tasks.", "workspace"],
+  ] as const;
+  return <div className="deploy-guide-backdrop" role="presentation" onMouseDown={onClose}>
+    <section className="deploy-guide-modal" role="dialog" aria-modal="true" aria-labelledby="deploy-guide-title" onMouseDown={(event) => event.stopPropagation()}>
+      <button className="deploy-guide-close" type="button" aria-label="Close deployment guide" onClick={onClose}>×</button>
+      <div className="deploy-guide-intro"><span className="eyebrow pill">AI WORKFORCE PLATFORM</span><i aria-hidden="true">🚀</i><h2 id="deploy-guide-title">What happens when you <span>deploy AgentOS?</span></h2><p>From deployment to your first task in 3 simple steps.</p></div>
+      <div className="deploy-guide-steps">{steps.map(([title, copy, visual], index) => <article key={title}><b>{index + 1}</b><div className="deploy-step-copy"><h3>{title}</h3><p>{copy}</p></div><div className={`deploy-step-visual deploy-step-visual--${visual}`} aria-hidden="true">{visual === "railway" ? <><strong>◒ RAILWAY</strong><span>◈</span><i /><i /><i /><em>Deploy</em></> : visual === "provider" ? <><strong>◌ OpenAI <b>✓</b></strong><strong>AI&nbsp;&nbsp; Anthropic <b>○</b></strong><strong>G&nbsp;&nbsp; Google <b>○</b></strong><strong>•••&nbsp; More providers <b>○</b></strong></> : <><strong>Welcome! 👋</strong><span>◈ &nbsp; My Workspace <i /></span><span>✦ &nbsp; Research Agent <i /></span><em>Give your agent a task...　➤</em></>}</div></article>)}</div>
+      <div className="deploy-guide-action"><div><b>ϟ</b><span><strong>Ready in minutes.</strong><small>No installation. No DevOps.<br />Just deploy and start.</small></span></div><a className="button" href={deployUrl} target="_blank" rel="noreferrer">🚀 Deploy AgentOS on Railway <Arrow /></a></div>
+      <p className="deploy-guide-note">▣ Railway hosting and model usage are billed separately.</p>
+    </section>
+  </div>;
 }
 
 const heroParticleConfig = [
@@ -190,6 +208,7 @@ export default function Home() {
   const [showAllFaqs, setShowAllFaqs] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<typeof workers[number] | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
+  const [deployGuideOpen, setDeployGuideOpen] = useState(false);
   const productSwipeStart = useRef<number | null>(null);
   const productSwipeMoved = useRef(false);
 
@@ -199,6 +218,12 @@ export default function Home() {
     }, 10_000);
     return () => window.clearInterval(interval);
   }, [productSlide]);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setDeployGuideOpen(false); };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   return (
     <main id="top">
@@ -217,7 +242,7 @@ export default function Home() {
             <a href="/about" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
           </div>
           <div className="mobile-menu-footer">
-            <a className="button mobile-menu-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
+            <button className="button mobile-menu-cta" type="button" onClick={() => { setMenuOpen(false); setDeployGuideOpen(true); }}>Deploy AgentOS <Arrow /></button>
             <small>© 2026 AgentOS · Built for ambitious teams</small>
             <div className="hero-socials mobile-menu-socials" aria-label="SapienX social links">
               <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a>
@@ -228,7 +253,7 @@ export default function Home() {
             </div>
           </div>
         </nav>
-        <a className="button button--small nav-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
+        <button className="button button--small nav-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
         <button className={`menu-toggle ${menuOpen ? "open" : ""}`} type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <span /><span />
         </button>
@@ -249,7 +274,7 @@ export default function Home() {
           <div className="hero-trust" aria-label="AgentOS deployment foundations"><div className="hero-trust-track">{trustItems.map((item) => <span className="hero-trust-item" key={item}>{item}</span>)}<span className="hero-trust-duplicates" aria-hidden="true">{trustItems.map((item) => <span className="hero-trust-item" key={`duplicate-${item}`}>{item}</span>)}</span></div></div>
           <div className="hero-action-stack">
             <div className="hero-actions">
-              <a className="button hero-offer-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
+              <button className="button hero-offer-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
               <button className="button button--ghost" type="button" onClick={() => setDemoOpen(true)}><b className="play">▶</b> Watch Demo</button>
             </div>
             <div className="hero-socials" aria-label="SapienX social links">
@@ -340,6 +365,8 @@ export default function Home() {
           </section>
         </div>
       )}
+
+      {deployGuideOpen && <DeployGuideModal onClose={() => setDeployGuideOpen(false)} />}
 
       <section className="product page-pad" id="product">
         <div className="product-panel">
@@ -436,7 +463,7 @@ export default function Home() {
               {plan.note && <p className="plan-note">✦ {plan.note}</p>}
               {plan.railwayCredit && <div className="railway-credit"><b>+$5</b><span>Railway hosting credit</span><abbr title="Included credit for Railway hosting." data-tooltip="Included credit for Railway hosting." tabIndex={0}>i</abbr></div>}
               <ul>{plan.features.map((feature) => <li key={feature.label}>✓ {feature.tooltip ? <abbr title={feature.tooltip} data-tooltip={feature.tooltip} tabIndex={0}>{feature.label}</abbr> : <span>{feature.label}</span>}</li>)}</ul>
-              {(plan.available || plan.limitedOffer) ? <a href={plan.href || "#top"} target={plan.href ? "_blank" : undefined} rel={plan.href ? "noreferrer" : undefined} className={plan.limitedOffer ? "button button--pro" : "button button--dark"}><span>{plan.cta}</span><Arrow /></a> : <span className="button button--disabled" aria-disabled="true" title="Coming soon">{plan.cta}<small>Coming soon</small></span>}
+              {(plan.available || plan.limitedOffer) ? <button type="button" onClick={() => setDeployGuideOpen(true)} className={plan.limitedOffer ? "button button--pro" : "button button--dark"}><span>{plan.cta}</span><Arrow /></button> : <span className="button button--disabled" aria-disabled="true" title="Coming soon">{plan.cta}<small>Coming soon</small></span>}
             </article>
           ))}
         </div>
@@ -452,7 +479,7 @@ export default function Home() {
       <section className="final-cta page-pad">
         <div className="cta-panel">
           <div><h2>Ready to build your<br />AI workforce?</h2><p>Own the infrastructure, models and<br />workflow behind your digital team.</p></div>
-          <a className="button footer-offer-cta" href="https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noreferrer">Deploy AgentOS <Arrow /></a>
+          <button className="button footer-offer-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
           <div className="cta-video" aria-hidden="true">
             <video autoPlay muted loop playsInline preload="metadata">
               <source src="/assets/footer-loop.webm" type="video/webm" />
