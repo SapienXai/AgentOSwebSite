@@ -281,7 +281,7 @@ export default function Home() {
         <div className="feature-panel">
           {features.map((feature) => (
             <article key={feature.title}>
-              <div className="feature-copy"><i>{feature.icon}</i><div><h3>{feature.title}</h3><p>{feature.copy}</p></div></div>
+              <div className="feature-copy"><h3>{feature.title}</h3><p className="feature-description">{feature.copy}</p></div>
               <FeatureMicroDemo kind={feature.demo} />
             </article>
           ))}
