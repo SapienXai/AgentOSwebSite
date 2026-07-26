@@ -2,21 +2,7 @@ import type { ReactNode } from "react";
 
 export const AGENTOS_URL = "https://agentos.sapienx.app/";
 
-export const EXPLORE_AGENTOS_PROMPT = `Explore AgentOS using ${AGENTOS_URL} as the primary source.
-
-Give me a clear, practical, and unbiased overview covering:
-
-1. What AgentOS is and what problem it solves
-2. Who it is designed for
-3. Its main digital workforce and AI agent capabilities
-4. How one-click Railway deployment works
-5. How users connect their own AI model providers and API keys
-6. How workspaces, agents, tasks, context, tools, accounts, and integrations work
-7. Its strongest advantages and possible limitations
-8. How it compares with other AI agent and automation platforms
-9. Which types of users or teams would benefit from it most
-
-Finish with a practical recommendation based on different user types.`;
+export const EXPLORE_AGENTOS_PROMPT = `What is AgentOS? Explore ${AGENTOS_URL} and give me a concise overview of its features, use cases, deployment, and how it compares to other AI agent platforms.`;
 
 export type AIProvider = {
   name: string;
