@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 
 import { useEffect, useRef, useState } from "react";
+import { AI_PROVIDERS, EXPLORE_AGENTOS_PROMPT } from "@/app/lib/ai-providers";
 
 const Arrow = () => <span aria-hidden="true">→</span>;
 const deployUrl = "https://railway.com/deploy/agentos-1?referralCode=w43Gta&utm_medium=integration&utm_source=template&utm_campaign=generic";
@@ -303,6 +304,37 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="foundation-ai-summary" aria-labelledby="foundation-ai-summary-title">
+        <div className="foundation-ai-summary-copy">
+          <p>AI SUMMARY</p>
+          <h2 id="foundation-ai-summary-title">Explore AgentOS with AI</h2>
+          <span>Open a ready-to-use overview in your preferred assistant.</span>
+        </div>
+        <div className="foundation-ai-summary-providers">
+          {AI_PROVIDERS.map((provider) => (
+            <a key={provider.name} className="foundation-ai-provider" href={provider.buildUrl(EXPLORE_AGENTOS_PROMPT)} target="_blank" rel="noopener noreferrer" aria-label={`Explore AgentOS with ${provider.name}`} title={provider.name}>
+              {provider.icon}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="foundation-ai-summary-desktop explore-ai page-pad" aria-labelledby="foundation-ai-summary-desktop-title">
+        <div className="explore-ai-intro">
+          <div className="eyebrow">EXPLORE WITH AI</div>
+          <h2 id="foundation-ai-summary-desktop-title">Understand AgentOS with your <span>favorite AI</span></h2>
+          <p>Open AgentOS in your preferred AI assistant to explore its capabilities, deployment model, use cases, and how it compares with other agent platforms.</p>
+        </div>
+        <div className="explore-ai-grid">
+          {AI_PROVIDERS.map((provider) => (
+            <a className="explore-ai-card" href={provider.buildUrl(EXPLORE_AGENTOS_PROMPT)} key={provider.name} target="_blank" rel="noopener noreferrer" aria-label={`Explore AgentOS with ${provider.name} (opens in a new tab)`}>
+              <span className="explore-ai-icon">{provider.icon}</span>
+              <span>{provider.name}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="feature-strip page-pad" id="solutions">
         <div className="feature-panel">
           {features.map((feature) => (
@@ -475,6 +507,30 @@ export default function Home() {
       <section className="faq page-pad" id="faq" aria-labelledby="faq-title">
         <div className="faq-intro"><div className="section-kicker">FAQ</div><h2 id="faq-title">The details that<br />matter <span>before you deploy.</span></h2></div>
         <div className="faq-list">{faqs.slice(0, showAllFaqs ? faqs.length : 4).map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}{faqs.length > 4 && <button type="button" className="faq-expand" aria-expanded={showAllFaqs} onClick={() => setShowAllFaqs(!showAllFaqs)}>{showAllFaqs ? "Show fewer questions" : `Show all ${faqs.length} questions`} <Arrow /></button>}</div>
+      </section>
+
+      <section className="explore-ai page-pad" aria-labelledby="explore-ai-title">
+        <style>{`@media (max-width: 760px) { .explore-ai-grid { grid-template-columns: repeat(5, 46px); justify-content: center; gap: 8px; } .explore-ai-card { min-height: 90px; gap: 5px; padding: 7px 0; border-color: transparent; background: transparent; box-shadow: none; font-size: 8px; } .explore-ai-card:hover { transform: none; border-color: transparent; background: transparent; box-shadow: none; } .explore-ai-icon { width: 40px; height: 40px; border-radius: 9px; } .explore-ai-icon svg { width: 25px; height: 25px; } }`}</style>
+        <div className="explore-ai-intro">
+          <div className="eyebrow">EXPLORE WITH AI</div>
+          <h2 id="explore-ai-title">Understand AgentOS with your <span>favorite AI</span></h2>
+          <p>Open AgentOS in your preferred AI assistant to explore its capabilities, deployment model, use cases, and how it compares with other agent platforms.</p>
+        </div>
+        <div className="explore-ai-grid">
+          {AI_PROVIDERS.map((provider) => (
+            <a
+              className="explore-ai-card"
+              href={provider.buildUrl(EXPLORE_AGENTOS_PROMPT)}
+              key={provider.name}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Explore AgentOS with ${provider.name} (opens in a new tab)`}
+            >
+              <span className="explore-ai-icon">{provider.icon}</span>
+              <span>{provider.name}</span>
+            </a>
+          ))}
+        </div>
       </section>
 
       <section className="final-cta page-pad">

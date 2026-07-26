@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { AGENTOS_URL } from "@/app/lib/ai-providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AgentOS — Build and Run Your AI Workforce",
   description: "Create digital workers, connect tools and channels, assign real work, and manage your entire AI workforce from one operating system.",
-  metadataBase: new URL("https://agentos-ai-workforce.akgulkazim.chatgpt.site"),
+  metadataBase: new URL(AGENTOS_URL),
   icons: {
     icon: "/assets/agentlogo.webp",
     shortcut: "/assets/agentlogo.webp",
