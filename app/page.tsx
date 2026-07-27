@@ -82,9 +82,9 @@ function DeployGuideModal({ onClose }: { onClose: () => void }) {
     <style>{`@keyframes deployGuideVisualFloat { 0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); } 50% { transform: translateY(-5px) scale(1.018); filter: brightness(1.15); } }`}</style>
     <section className="deploy-guide-modal" role="dialog" aria-modal="true" aria-labelledby="deploy-guide-title" onMouseDown={(event) => event.stopPropagation()}>
       <button className="deploy-guide-close" type="button" aria-label="Close deployment guide" onClick={onClose}>×</button>
-      <div className="deploy-guide-intro"><span className="eyebrow pill">AI WORKFORCE PLATFORM</span><i aria-hidden="true">🚀</i><h2 id="deploy-guide-title">What happens when you <span>deploy AgentOS?</span></h2><p>From deployment to your first task in 3 simple steps.</p></div>
+      <div className="deploy-guide-intro"><span className="eyebrow pill">AI WORKFORCE PLATFORM</span><h2 id="deploy-guide-title">What happens when you <span>deploy AgentOS?</span></h2><p>From deployment to your first task in 3 simple steps.</p></div>
       <div className="deploy-guide-steps">{steps.map(([title, copy, visual], index) => <article key={title}><b>{index + 1}</b><div className="deploy-step-copy"><h3>{title}</h3><p>{copy}</p></div><div className={`deploy-step-visual deploy-step-visual--${visual}`} style={{ animation: `deployGuideVisualFloat 2.8s ease-in-out ${index * .32}s infinite` }} aria-hidden="true">{visual === "railway" ? <><strong>◒ RAILWAY</strong><span>◈</span><i /><i /><i /><em>Deploy</em></> : visual === "provider" ? <><strong>◌ OpenAI <b>✓</b></strong><strong>AI&nbsp;&nbsp; Anthropic <b>○</b></strong><strong>G&nbsp;&nbsp; Google <b>○</b></strong><strong>•••&nbsp; More providers <b>○</b></strong></> : <><strong>Welcome! 👋</strong><span>◈ &nbsp; My Workspace <i /></span><span>✦ &nbsp; Research Agent <i /></span><em>Give your agent a task...　➤</em></>}</div></article>)}</div>
-      <div className="deploy-guide-action"><div><b>ϟ</b><span><strong>Ready in minutes.</strong><small>No installation. No DevOps.<br />Just deploy and start.</small></span></div><a className="button" href={deployUrl} target="_blank" rel="noreferrer">🚀 Deploy AgentOS on Railway <Arrow /></a></div>
+      <div className="deploy-guide-action"><div><b>ϟ</b><span><strong>Ready in minutes.</strong><small>No installation. No DevOps.<br />Just deploy and start.</small></span></div><a className="button deploy-cta" href={deployUrl} target="_blank" rel="noreferrer">Deploy AgentOS on Railway</a></div>
       <p className="deploy-guide-note">▣ Railway hosting and model usage are billed separately.</p>
     </section>
   </div>;
@@ -244,7 +244,7 @@ export default function Home() {
             <a href="/about" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
           </div>
           <div className="mobile-menu-footer">
-            <button className="button mobile-menu-cta" type="button" onClick={() => { setMenuOpen(false); setDeployGuideOpen(true); }}>Deploy AgentOS <Arrow /></button>
+            <button className="button mobile-menu-cta deploy-cta" type="button" onClick={() => { setMenuOpen(false); setDeployGuideOpen(true); }}>Deploy AgentOS <Arrow /></button>
             <small>© 2026 AgentOS · Built for ambitious teams</small>
             <div className="hero-socials mobile-menu-socials" aria-label="SapienX social links">
               <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a>
@@ -255,7 +255,7 @@ export default function Home() {
             </div>
           </div>
         </nav>
-        <button className="button button--small nav-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
+        <button className="button button--small nav-cta deploy-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
         <button className={`menu-toggle ${menuOpen ? "open" : ""}`} type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <span /><span />
         </button>
@@ -276,7 +276,7 @@ export default function Home() {
           <div className="hero-trust" aria-label="AgentOS deployment foundations"><div className="hero-trust-track">{trustItems.map((item) => <span className="hero-trust-item" key={item}>{item}</span>)}<span className="hero-trust-duplicates" aria-hidden="true">{trustItems.map((item) => <span className="hero-trust-item" key={`duplicate-${item}`}>{item}</span>)}</span></div></div>
           <div className="hero-action-stack">
             <div className="hero-actions">
-              <button className="button hero-offer-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
+              <button className="button hero-offer-cta deploy-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
               <button className="button button--ghost" type="button" onClick={() => setDemoOpen(true)}><b className="play">▶</b> Watch Demo</button>
             </div>
             <div className="hero-socials" aria-label="SapienX social links">
@@ -496,7 +496,7 @@ export default function Home() {
               {plan.note && <p className="plan-note">✦ {plan.note}</p>}
               {plan.railwayCredit && <div className="railway-credit"><b>+$5</b><span>Railway hosting credit</span><abbr title="Included credit for Railway hosting." data-tooltip="Included credit for Railway hosting." tabIndex={0}>i</abbr></div>}
               <ul>{plan.features.map((feature) => <li key={feature.label}>✓ {feature.tooltip ? <abbr title={feature.tooltip} data-tooltip={feature.tooltip} tabIndex={0}>{feature.label}</abbr> : <span>{feature.label}</span>}</li>)}</ul>
-              {(plan.available || plan.limitedOffer) ? <button type="button" onClick={() => setDeployGuideOpen(true)} className={plan.limitedOffer ? "button button--pro" : "button button--dark"}><span>{plan.cta}</span><Arrow /></button> : <span className="button button--disabled" aria-disabled="true" title="Coming soon">{plan.cta}<small>Coming soon</small></span>}
+              {(plan.available || plan.limitedOffer) ? <button type="button" onClick={() => setDeployGuideOpen(true)} className={plan.limitedOffer ? "button button--pro deploy-cta" : "button button--dark deploy-cta"}><span>{plan.cta}</span><Arrow /></button> : <span className="button button--disabled" aria-disabled="true" title="Coming soon">{plan.cta}<small>Coming soon</small></span>}
             </article>
           ))}
         </div>
@@ -536,7 +536,7 @@ export default function Home() {
       <section className="final-cta page-pad">
         <div className="cta-panel">
           <div><h2>Ready to build your<br />AI workforce?</h2><p>Own the infrastructure, models and<br />workflow behind your digital team.</p></div>
-          <button className="button footer-offer-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
+          <button className="button footer-offer-cta deploy-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
           <div className="cta-video" aria-hidden="true">
             <video autoPlay muted loop playsInline preload="metadata">
               <source src="/assets/footer-loop.webm" type="video/webm" />
