@@ -28,6 +28,21 @@ test("defines production metadata without starter-preview artifacts", async () =
   assert.doesNotMatch(source, /react-loading-skeleton/i);
 });
 
+test("defines the desktop download experience", async () => {
+  const home = await readFile(new URL("app/page.tsx", projectRoot), "utf8");
+  const subpage = await readFile(new URL("app/components/subpage.tsx", projectRoot), "utf8");
+  const routes = await readFile(new URL("app/[...slug]/page.tsx", projectRoot), "utf8");
+
+  assert.match(home, /AGENTOS DESKTOP/);
+  assert.match(home, /Download Desktop/);
+  assert.match(subpage, /function DesktopDownload/);
+  assert.match(subpage, /macOS/);
+  assert.match(subpage, /Windows/);
+  assert.match(subpage, /Linux/);
+  assert.match(subpage, /OpenClaw stays authoritative/);
+  assert.match(routes, /download:/);
+});
+
 test("creates Next.js production output", async () => {
   await access(new URL(".next/BUILD_ID", projectRoot));
 });

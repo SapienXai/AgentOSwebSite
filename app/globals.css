@@ -101,6 +101,23 @@ main { min-height: 100vh; background: radial-gradient(circle at 68% 13%, rgba(23
 .scroll-cue span { width: 2px; height: 5px; border-radius: 99px; background: white; animation: scrollCue 1.8s infinite; }
 @keyframes scrollCue { 0%, 100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(7px); opacity: 1; } }
 
+.desktop-spotlight { position: relative; display: grid; grid-template-columns: minmax(270px, .76fr) minmax(0, 1.24fr); gap: 28px; align-items: center; margin: 12px 30px 0; padding-top: 21px; padding-bottom: 21px; border: 1px solid rgba(240,173,67,.28); border-radius: 13px; overflow: hidden; background: radial-gradient(circle at 77% 48%, rgba(138,49,216,.16), transparent 34%), linear-gradient(110deg, rgba(240,173,67,.09), rgba(255,255,255,.018) 46%, rgba(138,49,216,.05)); box-shadow: inset 0 1px rgba(255,236,185,.1), 0 18px 48px rgba(0,0,0,.2); }
+.desktop-spotlight::before { content: ""; position: absolute; width: 240px; height: 240px; right: 18%; top: -120px; border-radius: 50%; border: 1px solid rgba(255,209,125,.12); box-shadow: 0 0 0 22px rgba(255,209,125,.025), 0 0 0 44px rgba(255,209,125,.018); pointer-events: none; }
+.desktop-spotlight-copy { position: relative; z-index: 1; }
+.desktop-spotlight h2 { margin: 9px 0 8px; font-size: clamp(24px, 3vw, 36px); line-height: 1.05; letter-spacing: -1.25px; }
+.desktop-spotlight h2 span { color: var(--gold-soft); }
+.desktop-spotlight p { max-width: 330px; margin: 0 0 13px; color: #b5b0a7; font-size: 11px; line-height: 1.55; }
+.desktop-spotlight-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.desktop-spotlight-actions .button { min-height: 34px; min-width: 0; padding: 0 13px; font-size: 10px; gap: 12px; }
+.desktop-platform-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; color: #a8a29a; font-size: 9px; }
+.desktop-platform-pills span { padding: 4px 7px; border: 1px solid rgba(240,173,67,.19); border-radius: 999px; background: rgba(0,0,0,.17); }
+.desktop-spotlight-visual { position: relative; min-width: 0; align-self: stretch; min-height: 175px; display: flex; align-items: end; overflow: hidden; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; background: #060708; box-shadow: 0 14px 30px rgba(0,0,0,.35), 0 0 60px rgba(138,49,216,.12); }
+.desktop-spotlight-visual img { position: relative; z-index: 1; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 15% 50%; opacity: .94; }
+.desktop-window-bar { position: absolute; z-index: 3; top: 0; right: 0; left: 0; height: 24px; display: flex; align-items: center; gap: 4px; padding: 0 8px; border-bottom: 1px solid rgba(255,255,255,.11); background: rgba(7,8,9,.82); color: #9e9991; font-size: 7px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.desktop-window-bar span { width: 5px; height: 5px; border-radius: 50%; background: #eb6460; }.desktop-window-bar span:nth-child(2) { background: #e8bd5e; }.desktop-window-bar span:nth-child(3) { background: #5ec87b; }
+.desktop-window-bar b { margin-left: 7px; color: #d7d2c8; font-size: 7px; font-weight: 600; }.desktop-window-bar i { margin-left: auto; color: #63d686; font-size: 7px; font-style: normal; }
+.desktop-window-glow { position: absolute; z-index: 2; inset: 24px 0 0; pointer-events: none; background: linear-gradient(90deg, rgba(6,7,8,.36), transparent 42%, rgba(142,48,215,.16)), linear-gradient(0deg, rgba(4,5,6,.5), transparent 38%); }
+
 .trusted { height: 66px; text-align: center; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-left: 0; padding-right: 0; }
 .trusted > p { color: #676767; font-size: 7px; letter-spacing: 3.2px; margin: 0 0 8px; }
 .logo-row { width: max-content; display: flex; align-items: center; color: #7e7c78; white-space: nowrap; animation: foundationMarquee 24s linear infinite; }
@@ -606,6 +623,14 @@ section.foundation-ai-summary-desktop { display: none; }
   .scroll-cue { bottom: 10px; z-index: 3; }
   @keyframes heroFloat { 0%,100% { transform: translateX(-4px) scale(1.02); } 50% { transform: translateX(7px) scale(1.05); } }
 
+  .desktop-spotlight { grid-template-columns: 1fr; gap: 17px; margin: 12px 18px 0; padding-top: 22px; padding-bottom: 12px; }
+  .desktop-spotlight-copy { text-align: center; }
+  .desktop-spotlight h2 { font-size: 29px; }
+  .desktop-spotlight p { margin-right: auto; margin-left: auto; font-size: 12px; }
+  .desktop-spotlight-actions { justify-content: center; }
+  .desktop-platform-pills { justify-content: center; }
+  .desktop-spotlight-visual { min-height: 156px; margin: 0 9px; }
+
   .trusted { height: 91px; }
   .trusted > p { margin-bottom: 13px; }
   .logo-row { animation-duration: 19s; }
@@ -844,9 +869,34 @@ section.foundation-ai-summary-desktop { display: none; }
 .faq-page details { border-top: 1px solid rgba(255,255,255,.12); }.faq-page details:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
 .faq-page summary { min-height: 68px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 16px; font-weight: 650; }.faq-page summary span { color: var(--gold); font-size: 22px; }.faq-page details[open] summary span { transform: rotate(45deg); }.faq-page p { max-width: 760px; margin: -8px 0 22px; color: #aaa6a0; font-size: 13px; line-height: 1.65; }
 .empty-release { max-width: 860px; padding-top: 55px; padding-bottom: 70px; }.empty-release .button { margin-top: 22px; }
+.desktop-release-banner { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 12px; padding-top: 24px; padding-bottom: 24px; border: 1px solid rgba(240,173,67,.25); border-radius: 12px; background: linear-gradient(110deg, rgba(240,173,67,.08), rgba(255,255,255,.018)); }
+.desktop-release-banner > div { max-width: 700px; }.desktop-release-banner h2 { margin: 10px 0 7px; font-size: 25px; letter-spacing: -.8px; }.desktop-release-banner p { margin: 0; color: #aaa6a0; font-size: 13px; line-height: 1.6; }.desktop-release-banner .button { white-space: nowrap; }
+.desktop-download-section { padding-top: 43px; padding-bottom: 28px; }.desktop-download-section .section-heading { max-width: 700px; padding-top: 0; }.desktop-download-section .section-heading h2, .desktop-runtime-section .section-heading h2, .desktop-install-steps .section-heading h2 { margin: 10px 0 8px; font-size: 31px; letter-spacing: -1px; }.desktop-download-section .section-heading p { margin: 0; color: #aaa6a0; font-size: 13px; line-height: 1.6; }
+.desktop-platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-top: 25px; }.desktop-platform-card { min-height: 280px; display: grid; grid-template-columns: 54px 1fr; gap: 17px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: radial-gradient(circle at 10% 0%, rgba(240,173,67,.1), transparent 36%), linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.008)); }.desktop-platform-icon { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid rgba(240,173,67,.42); border-radius: 13px; background: rgba(240,173,67,.09); color: var(--gold-soft); font-size: 25px; box-shadow: 0 0 26px rgba(240,173,67,.1); }.desktop-platform-card-copy { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }.desktop-platform-package { color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; }.desktop-platform-card h3 { margin: 7px 0 8px; font-size: 22px; }.desktop-platform-card p { min-height: 57px; margin: 0 0 8px; color: #aaa6a0; font-size: 12px; line-height: 1.55; }.desktop-platform-card small { min-height: 48px; margin-bottom: 15px; color: #87837d; font-size: 10px; line-height: 1.5; }.desktop-platform-card .button { min-height: 35px; min-width: 0; padding: 0 11px; font-size: 10px; gap: 9px; }
+.desktop-runtime-section { padding-top: 25px; padding-bottom: 30px; }.desktop-runtime-section .section-heading { padding-top: 0; }.desktop-install-steps { padding-top: 21px; padding-bottom: 55px; }.desktop-install-steps .section-heading { padding-top: 0; }.desktop-install-steps ol { display: grid; grid-template-columns: repeat(3, 1fr); margin: 24px 0 0; padding: 0; list-style: none; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,.02); }.desktop-install-steps li { min-height: 135px; display: grid; grid-template-columns: auto 1fr; align-content: center; gap: 13px; padding: 22px; border-right: 1px solid rgba(240,173,67,.18); }.desktop-install-steps li:last-child { border-right: 0; }.desktop-install-steps li > b { color: var(--gold); font-size: 11px; }.desktop-install-steps li span { display: grid; gap: 7px; }.desktop-install-steps li strong { color: #f0ece4; font-size: 15px; }.desktop-install-steps li small { color: #aaa6a0; font-size: 11px; line-height: 1.5; }
 .legal-hero { max-width: 950px; padding-top: 95px; padding-bottom: 40px; }.legal-hero p { color: #99958e; font-size: 13px; }
 .legal-page { max-width: 960px; display: grid; grid-template-columns: 190px 1fr; gap: 60px; margin: 0 auto; padding: 35px 30px 80px; color: #c5c1ba; }.legal-page aside { position: sticky; top: 100px; align-self: start; display: grid; gap: 10px; color: #99958e; font-size: 12px; }.legal-page aside b { color: var(--gold-soft); }.legal-page aside a:hover { color: var(--gold); }.legal-page h2 { margin: 0 0 13px; color: #f4f3ef; font-size: 26px; letter-spacing: -1px; }.legal-page p { margin: 0 0 34px; font-size: 14px; line-height: 1.75; }.legal-page .button { margin-top: -8px; }
 @media (max-width: 760px) { .subpage-nav nav { display: none; }.subpage-nav { grid-template-columns: 1fr auto; }.subpage-nav .nav-cta { display: inline-flex; min-width: 105px; font-size: 10px; }.subpage-hero { min-height: 0; grid-template-columns: 1fr; gap: 28px; padding-top: 58px; padding-bottom: 48px; }.subpage-hero::before { width: 320px; height: 320px; right: -40%; top: 67%; }.subpage-hero h1, .legal-hero h1 { font-size: 42px; letter-spacing: -1.6px; }.subpage-hero p { font-size: 14px; }.subpage-hero-visual { min-height: 205px; }.subpage-hero-visual.is-worker img { height: 250px; }.preview-section { padding-bottom: 28px; }.subpage-sections { padding-bottom: 35px; }.subpage-sections article, .subpage-sections article.reverse { grid-template-columns: 1fr; gap: 15px; padding: 22px; }.subpage-sections aside { border-top: 1px solid rgba(240,173,67,.3); border-left: 0; padding: 15px 0 0; font-size: 13px; }.three-grid, .integration-grid, .template-grid { grid-template-columns: 1fr; }.template-grid article { min-height: 180px; grid-template-columns: 38% 62%; }.workflow-panel ol { display: grid; grid-template-columns: 1fr; }.workflow-panel li { min-height: 70px; border-right: 0; border-bottom: 1px solid rgba(240,173,67,.18); }.workflow-panel li:last-child { border-bottom: 0; }.integration-grid article { min-height: 140px; }.legal-hero { padding-top: 60px; }.legal-page { grid-template-columns: 1fr; gap: 26px; padding: 20px 18px 55px; }.legal-page aside { position: static; grid-template-columns: repeat(2, 1fr); }.legal-page p { font-size: 13px; } }
+@media (max-width: 760px) {
+  .desktop-release-banner { display: grid; gap: 16px; margin-top: 10px; padding-top: 20px; padding-bottom: 20px; }
+  .desktop-release-banner h2 { font-size: 22px; }
+  .desktop-release-banner p { font-size: 12px; }
+  .desktop-release-banner .button { width: 100%; }
+  .desktop-download-section { padding-top: 35px; }
+  .desktop-download-section .section-heading h2, .desktop-runtime-section .section-heading h2, .desktop-install-steps .section-heading h2 { font-size: 27px; }
+  .desktop-platform-grid { grid-template-columns: 1fr; gap: 10px; }
+  .desktop-platform-card { min-height: 0; grid-template-columns: 47px 1fr; gap: 13px; padding: 17px; }
+  .desktop-platform-icon { width: 42px; height: 42px; font-size: 21px; }
+  .desktop-platform-card p { min-height: 0; }
+  .desktop-platform-card small { min-height: 0; margin-bottom: 13px; }
+  .desktop-platform-card .button { width: 100%; }
+  .desktop-runtime-section { padding-top: 12px; }
+  .desktop-install-steps { padding-top: 10px; padding-bottom: 42px; }
+  .desktop-install-steps ol { grid-template-columns: 1fr; }
+  .desktop-install-steps li { min-height: 82px; padding: 17px; border-right: 0; border-bottom: 1px solid rgba(240,173,67,.18); }
+  .desktop-install-steps li:last-child { border-bottom: 0; }
+}
+
 @media print { .nav-shell, .footer, .final-cta { display: none; } body, main { background: #fff; color: #111; }.legal-page, .legal-page h2, .legal-page p { color: #111; } }
 
 /* Content-rich route page additions. */

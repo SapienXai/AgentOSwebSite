@@ -244,7 +244,7 @@ export default function Home() {
             <a href="/about" onClick={() => setMenuOpen(false)}>Company <Arrow /></a>
           </div>
           <div className="mobile-menu-footer">
-            <button className="button mobile-menu-cta deploy-cta" type="button" onClick={() => { setMenuOpen(false); setDeployGuideOpen(true); }}>Deploy AgentOS <Arrow /></button>
+            <a className="button mobile-menu-cta" href="/download" onClick={() => setMenuOpen(false)}>Download Desktop <Arrow /></a>
             <small>© 2026 AgentOS · Built for ambitious teams</small>
             <div className="hero-socials mobile-menu-socials" aria-label="SapienX social links">
               <a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="SapienX website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a>
@@ -255,7 +255,7 @@ export default function Home() {
             </div>
           </div>
         </nav>
-        <button className="button button--small nav-cta deploy-cta" type="button" onClick={() => setDeployGuideOpen(true)}>Deploy AgentOS <Arrow /></button>
+        <a className="button button--small nav-cta" href="/download">Download Desktop <Arrow /></a>
         <button className={`menu-toggle ${menuOpen ? "open" : ""}`} type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <span /><span />
         </button>
@@ -294,6 +294,26 @@ export default function Home() {
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true"><span /></div>
+      </section>
+
+      <section className="desktop-spotlight page-pad" aria-labelledby="desktop-spotlight-title">
+        <div className="desktop-spotlight-copy">
+          <div className="eyebrow">AGENTOS DESKTOP</div>
+          <h2 id="desktop-spotlight-title">Your AI workforce,<br /><span>on your desktop.</span></h2>
+          <p>Use the same AgentOS workspace as a native app on macOS, Windows and Linux.</p>
+          <div className="desktop-spotlight-actions">
+            <a className="button" href="/download">Download Desktop <Arrow /></a>
+            <a className="button button--ghost" href="#pricing">Deploy on Railway <Arrow /></a>
+          </div>
+          <div className="desktop-platform-pills" aria-label="Supported desktop platforms">
+            <span>⌘ macOS</span><span>⊞ Windows</span><span>◈ Linux</span>
+          </div>
+        </div>
+        <div className="desktop-spotlight-visual" aria-hidden="true">
+          <div className="desktop-window-bar"><span /><span /><span /><b>AgentOS Desktop</b><i>●</i></div>
+          <img src="/assets/screens/01-mission-control.webp" alt="" />
+          <div className="desktop-window-glow" />
+        </div>
       </section>
 
       <section className="trusted page-pad" aria-label="AgentOS foundations">
@@ -547,7 +567,7 @@ export default function Home() {
 
       <footer className="footer page-pad" id="resources">
         <div className="footer-brand"><Logo compact /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="AgentOS social links"><a href="https://sapienx.app/" target="_blank" rel="noreferrer" aria-label="AgentOS website"><img className="social-icon" src="/assets/social/globe.svg" alt="" /></a><a href="https://t.me/sapienapp" target="_blank" rel="noreferrer" aria-label="AgentOS on Telegram"><img className="social-icon" src="/assets/social/telegram.svg" alt="" /></a><a href="https://x.com/sapienapp" target="_blank" rel="noreferrer" aria-label="AgentOS on X">𝕏</a><a href="https://www.linkedin.com/company/sapienxapp/" target="_blank" rel="noreferrer" aria-label="AgentOS on LinkedIn"><span className="social-linkedin">in</span></a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer" aria-label="AgentOS on GitHub"><img className="social-icon" src="/assets/social/github.svg" alt="" /></a></div></div>
-        <div className="footer-links"><h4>Product</h4><a href="/product">Overview</a><a href="/features">Features</a><a href="/#pricing">Pricing</a><a href="/integrations">Integrations</a><a href="/changelog">Changelog</a></div>
+        <div className="footer-links"><h4>Product</h4><a href="/product">Overview</a><a href="/features">Features</a><a href="/download">Download Desktop</a><a href="/#pricing">Pricing</a><a href="/integrations">Integrations</a><a href="/changelog">Changelog</a></div>
         <div className="footer-links"><h4>Solutions</h4><a href="/solutions/solo-founders">Solo Founders</a><a href="/solutions/automation-agencies">Automation Agencies</a><a href="/solutions/startup-teams">Startup Teams</a><a href="/solutions/web3-communities">Web3 &amp; Communities</a></div>
         <div className="footer-links"><h4>Resources</h4><a href="/docs">Documentation</a><a href="/deployment-guide">Deployment Guide</a><a href="/openclaw-setup">OpenClaw Setup</a><a href="/templates">Agent Templates</a><a href="/faq">FAQ</a><a href="/support">Support</a></div>
         <div className="footer-links"><h4>Company</h4><a href="/about">About AgentOS</a><a href="https://github.com/SapienXai/AgentOS" target="_blank" rel="noreferrer">GitHub</a><a href="/contact">Contact</a><a href="/security">Security</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>

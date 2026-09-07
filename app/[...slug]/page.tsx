@@ -4,6 +4,7 @@ import Subpage from "../components/subpage";
 const titles: Record<string, [string, string]> = {
   product: ["AgentOS Product — Build and Operate Digital Workers", "Build, manage and supervise a digital workforce from one operational workspace."],
   features: ["AgentOS Features — Build and Operate Digital Workers", "Everything your digital workforce needs to operate with clear context and control."],
+  download: ["Download AgentOS Desktop — macOS, Windows and Linux", "Install AgentOS as a native desktop application powered by Tauri 2."],
   integrations: ["AgentOS Integrations — Connect Your Workforce", "Explore the verified tools, accounts and model providers available to AgentOS."],
   changelog: ["AgentOS Changelog", "Verified product updates and release history for AgentOS."],
   docs: ["AgentOS Documentation — Deploy and Operate AgentOS", "A practical entry point for deploying and operating AgentOS."],
