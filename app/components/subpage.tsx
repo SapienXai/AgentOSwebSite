@@ -10,7 +10,15 @@ const railwayDocs = "https://docs.railway.com/";
 const openclawDocs = "https://docs.openclaw.ai/";
 const issueUrl = `${github}/issues`;
 const securityUrl = `${github}/security`;
-const desktopRelease = `${github}/releases/latest`;
+const desktopVersion = "0.7.8";
+const desktopRelease = `${github}/releases/tag/agentos-v${desktopVersion}`;
+const desktopDownloads = {
+  macos: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.7.8_aarch64.dmg`,
+  windows: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.7.8_x64-setup.exe`,
+  linuxAppImage: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.7.8_amd64.AppImage`,
+  linuxDeb: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.7.8_amd64.deb`,
+  linuxRpm: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS-0.7.8-1.x86_64.rpm`,
+} as const;
 
 type LinkItem = readonly [string, string, boolean?];
 type Worker = { name: string; role: string; image: string; purpose: string; setup: string; review: string };
@@ -88,22 +96,22 @@ function Integrations() { const all = [["OpenAI", "Model provider", "Available w
 function Changelog() { return <><Hero eyebrow="PRODUCT / CHANGELOG" title="Verified release information belongs with the source." summary="This marketing-site repository does not contain a verified AgentOS release timeline. Rather than invent release notes, use the public repository and its release history for the current source of truth." primary={["View repository releases", `${github}/releases`, true]} secondary={["Open GitHub repository", github, true]} /><section className="page-pad empty-release"><span className="eyebrow">RELEASE INFORMATION</span><h2>No duplicate release feed on this site.</h2><p>AgentOS is actively developed. Version compatibility, installation details and update guidance should be taken from the repository and Quickstart that correspond to the version you are operating.</p><LinkRow links={[["AgentOS Quickstart", quickstart, true], ["Repository releases", `${github}/releases`, true], ["OpenClaw setup", "/openclaw-setup"]]} /></section><FinalCta title="Check compatibility before an update." copy="OpenClaw and AgentOS versions should be evaluated together, especially for a trusted runtime with persistent state." action={["Read the Quickstart", quickstart, true]} /></>; }
 
 const desktopPlatforms = [
-  { icon: "⌘", name: "macOS", packageName: "DMG installer", copy: "A native desktop shell for Apple Silicon and Intel Macs.", detail: "Use the latest release page for the published macOS build." },
-  { icon: "⊞", name: "Windows", packageName: "Windows installer", copy: "Install AgentOS as a native Windows desktop application.", detail: "Use the latest release page for the published Windows build." },
-  { icon: "◈", name: "Linux", packageName: "AppImage · DEB · RPM", copy: "Choose the Linux package that fits your desktop environment.", detail: "AppImage is the simplest starting point; package builds follow the release." },
+  { icon: "⌘", name: "macOS", packageName: "DMG · Apple Silicon", copy: "A native desktop shell for Apple Silicon Macs.", detail: "AgentOS 0.7.8 · unsigned and not notarized. Intel builds are not available yet.", href: desktopDownloads.macos, alternateLinks: [] as const },
+  { icon: "⊞", name: "Windows", packageName: "Windows installer", copy: "Install AgentOS as a native Windows desktop application.", detail: "AgentOS 0.7.8 · Windows Authenticode signing is not configured.", href: desktopDownloads.windows, alternateLinks: [] as const },
+  { icon: "◈", name: "Linux", packageName: "AppImage · DEB · RPM", copy: "Choose the Linux package that fits your desktop environment.", detail: "AgentOS 0.7.8 · AppImage is the simplest starting point.", href: desktopDownloads.linuxAppImage, alternateLinks: [["DEB", desktopDownloads.linuxDeb], ["RPM", desktopDownloads.linuxRpm]] },
 ] as const;
 
 function DesktopDownload() {
   return <>
-    <Hero eyebrow="PRODUCT / DESKTOP" title="AgentOS, installed on your desktop." summary="Run the AgentOS workspace as a native Tauri application on macOS, Windows and Linux. The desktop shell keeps the existing AgentOS product and OpenClaw runtime boundaries intact." image="/assets/screens/01-mission-control.webp" primary={["View latest release", desktopRelease, true]} secondary={["Deploy on Railway", deploy, true]} />
+    <Hero eyebrow={`PRODUCT / DESKTOP · ${desktopVersion}`} title="AgentOS, installed on your desktop." summary="Run the AgentOS workspace as a native Tauri application on macOS, Windows and Linux. The desktop shell keeps the existing AgentOS product and OpenClaw runtime boundaries intact." image="/assets/screens/01-mission-control.webp" primary={["View release assets", desktopRelease, true]} secondary={["Deploy on Railway", deploy, true]} />
     <section className="page-pad desktop-release-banner">
-      <div><span className="eyebrow">DESKTOP RELEASE CHANNEL</span><h2>One AgentOS experience across web and desktop.</h2><p>Desktop builds are published with the corresponding AgentOS release. Use the release page to find the installer for your platform as each signed build becomes available.</p></div>
+      <div><span className="eyebrow">DESKTOP RELEASE CHANNEL</span><h2>One AgentOS experience across web and desktop.</h2><p>AgentOS 0.7.8 is available for Apple Silicon macOS, Windows and Linux. Download the installer for your platform or view every release asset on GitHub.</p></div>
       <External href={desktopRelease}><span className="button button--ghost">View release assets <b>↗</b></span></External>
     </section>
     <section className="page-pad desktop-download-section" aria-labelledby="desktop-download-title">
       <div className="section-heading"><span className="eyebrow">CHOOSE YOUR PLATFORM</span><h2 id="desktop-download-title">Download AgentOS Desktop.</h2><p>Install the native app, then connect the workspace, models and runtime you want to operate.</p></div>
-      <div className="desktop-platform-grid">{desktopPlatforms.map((platform) => <article key={platform.name} className="desktop-platform-card"><div className="desktop-platform-icon" aria-hidden="true">{platform.icon}</div><div className="desktop-platform-card-copy"><span className="desktop-platform-package">{platform.packageName}</span><h3>{platform.name}</h3><p>{platform.copy}</p><small>{platform.detail}</small><External href={desktopRelease}><span className="button button--dark">View {platform.name} release <b>↗</b></span></External></div></article>)}</div>
-      <p className="content-note">The release page is the source of truth for the current version and platform assets. Do not install unsigned or unofficial builds when operating a trusted workspace.</p>
+      <div className="desktop-platform-grid">{desktopPlatforms.map((platform) => <article key={platform.name} className="desktop-platform-card"><div className="desktop-platform-icon" aria-hidden="true">{platform.icon}</div><div className="desktop-platform-card-copy"><span className="desktop-platform-package">{platform.packageName}</span><h3>{platform.name}</h3><p>{platform.copy}</p><small>{platform.detail}</small><div className="desktop-platform-actions"><External href={platform.href}><span className="button button--dark">Download {platform.name} <b>↓</b></span></External>{platform.alternateLinks && <div className="desktop-alternative-links" aria-label={`${platform.name} package alternatives`}>{platform.alternateLinks.map(([label, href]) => <External key={label} href={href}>{label}</External>)}</div>}</div></div></article>)}</div>
+      <p className="content-note">These links point to the verified AgentOS 0.7.8 GitHub Release assets. The release page remains the source of truth for future versions and updater metadata.</p>
     </section>
     <section className="page-pad desktop-runtime-section" aria-labelledby="desktop-runtime-title">
       <div className="section-heading"><span className="eyebrow">WHAT DESKTOP CHANGES</span><h2 id="desktop-runtime-title">A native shell around the AgentOS you already know.</h2></div>

@@ -40,6 +40,11 @@ test("defines the desktop download experience", async () => {
   assert.match(subpage, /Windows/);
   assert.match(subpage, /Linux/);
   assert.match(subpage, /OpenClaw stays authoritative/);
+  assert.match(subpage, /AgentOS_0\.7\.8_aarch64\.dmg/);
+  assert.match(subpage, /AgentOS_0\.7\.8_x64-setup\.exe/);
+  assert.match(subpage, /AgentOS_0\.7\.8_amd64\.AppImage/);
+  assert.match(subpage, /AgentOS_0\.7\.8_amd64\.deb/);
+  assert.match(subpage, /AgentOS-0\.7\.8-1\.x86_64\.rpm/);
   assert.match(routes, /download:/);
 });
 
