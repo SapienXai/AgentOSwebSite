@@ -10,15 +10,25 @@ const railwayDocs = "https://docs.railway.com/";
 const openclawDocs = "https://docs.openclaw.ai/";
 const issueUrl = `${github}/issues`;
 const securityUrl = `${github}/security`;
-const desktopVersion = "0.8.0";
+const desktopCandidate = "0.9.0";
+// Set this public build variable after the corresponding GitHub release is published.
+const desktopVersion = process.env.NEXT_PUBLIC_AGENTOS_DESKTOP_VERSION === desktopCandidate ? desktopCandidate : "0.8.0";
 const desktopRelease = `${github}/releases/tag/agentos-v${desktopVersion}`;
-const desktopDownloads = {
-  macos: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.8.0_aarch64.dmg`,
-  windows: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.8.0_x64-setup.exe`,
-  linuxAppImage: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.8.0_amd64.AppImage`,
-  linuxDeb: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS_0.8.0_amd64.deb`,
-  linuxRpm: `${github}/releases/download/agentos-v${desktopVersion}/AgentOS-0.8.0-1.x86_64.rpm`,
-} as const;
+const desktopAssetBase = `${github}/releases/download/agentos-v${desktopVersion}`;
+const legacyDesktopRelease = desktopVersion === "0.8.0";
+const desktopAssets = legacyDesktopRelease ? {
+  macos: "AgentOS_0.8.0_aarch64.dmg",
+  windows: "AgentOS_0.8.0_x64-setup.exe",
+  linuxAppImage: "AgentOS_0.8.0_amd64.AppImage",
+  linuxDeb: "AgentOS_0.8.0_amd64.deb",
+  linuxRpm: "AgentOS-0.8.0-1.x86_64.rpm",
+} : {
+  macos: `AgentOS-${desktopVersion}-macos-arm64.dmg`,
+  windows: `AgentOS-${desktopVersion}-windows-x64-setup.exe`,
+  linuxAppImage: `AgentOS-${desktopVersion}-linux-x64.AppImage`,
+  linuxDeb: `AgentOS-${desktopVersion}-linux-x64.deb`,
+  linuxRpm: `AgentOS-${desktopVersion}-linux-x64.rpm`,
+};
 
 type LinkItem = readonly [string, string, boolean?];
 type Worker = { name: string; role: string; image: string; purpose: string; setup: string; review: string };
@@ -96,9 +106,9 @@ function Integrations() { const all = [["OpenAI", "Model provider", "Available w
 function Changelog() { return <><Hero eyebrow="PRODUCT / CHANGELOG" title="Verified release information belongs with the source." summary="This marketing-site repository does not contain a verified AgentOS release timeline. Rather than invent release notes, use the public repository and its release history for the current source of truth." primary={["View repository releases", `${github}/releases`, true]} secondary={["Open GitHub repository", github, true]} /><section className="page-pad empty-release"><span className="eyebrow">RELEASE INFORMATION</span><h2>No duplicate release feed on this site.</h2><p>AgentOS is actively developed. Version compatibility, installation details and update guidance should be taken from the repository and Quickstart that correspond to the version you are operating.</p><LinkRow links={[["AgentOS Quickstart", quickstart, true], ["Repository releases", `${github}/releases`, true], ["OpenClaw setup", "/openclaw-setup"]]} /></section><FinalCta title="Check compatibility before an update." copy="OpenClaw and AgentOS versions should be evaluated together, especially for a trusted runtime with persistent state." action={["Read the Quickstart", quickstart, true]} /></>; }
 
 const desktopPlatforms = [
-  { icon: "⌘", name: "macOS", packageName: "DMG · Apple Silicon", detail: "Unsigned · not notarized · Intel not available", href: desktopDownloads.macos, alternateLinks: [] as const },
-  { icon: "⊞", name: "Windows", packageName: "Windows installer · x64", detail: "Authenticode signing is not configured", href: desktopDownloads.windows, alternateLinks: [] as const },
-  { icon: "◈", name: "Linux", packageName: "AppImage · DEB · RPM · x64", detail: "AppImage recommended", href: desktopDownloads.linuxAppImage, alternateLinks: [["DEB", desktopDownloads.linuxDeb], ["RPM", desktopDownloads.linuxRpm]] },
+  { icon: "⌘", name: "macOS", packageName: "DMG · Apple Silicon", detail: legacyDesktopRelease ? "Ad hoc signed · notarization unavailable" : "See release notes for installation details", href: `${desktopAssetBase}/${desktopAssets.macos}`, alternateLinks: [] as const },
+  { icon: "⊞", name: "Windows", packageName: "Windows installer · x64", detail: legacyDesktopRelease ? "Authenticode signing is not configured" : "See release notes for installation details", href: `${desktopAssetBase}/${desktopAssets.windows}`, alternateLinks: [] as const },
+  { icon: "◈", name: "Linux", packageName: "AppImage · DEB · RPM · x64", detail: "AppImage recommended", href: `${desktopAssetBase}/${desktopAssets.linuxAppImage}`, alternateLinks: [["DEB", `${desktopAssetBase}/${desktopAssets.linuxDeb}`], ["RPM", `${desktopAssetBase}/${desktopAssets.linuxRpm}`]] },
 ] as const;
 
 function DesktopDownload() {
@@ -106,8 +116,8 @@ function DesktopDownload() {
     <Hero eyebrow={`PRODUCT / DESKTOP · ${desktopVersion}`} title="AgentOS, installed on your desktop." summary="The AgentOS workspace, packaged as a native app for macOS, Windows and Linux." image="/assets/screens/01-mission-control.webp" primary={["View release assets", desktopRelease, true]} secondary={["Deploy on Railway", deploy, true]} variant="desktop-hero" />
     <section className="page-pad desktop-download-section" aria-labelledby="desktop-download-title">
       <div className="desktop-download-heading"><div className="section-heading"><span className="eyebrow">CHOOSE YOUR PLATFORM</span><h2 id="desktop-download-title">Download AgentOS Desktop.</h2></div><div className="desktop-release-meta"><span>v{desktopVersion}</span><span>Apple Silicon · Windows x64 · Linux x64</span><External href={desktopRelease}>All release assets <b>↗</b></External></div></div>
-      <div className="desktop-platform-grid">{desktopPlatforms.map((platform) => <article key={platform.name} className="desktop-platform-card"><div className="desktop-platform-icon" aria-hidden="true">{platform.icon}</div><div className="desktop-platform-card-copy"><div className="desktop-platform-card-header"><div><span className="desktop-platform-package">{platform.packageName}</span><h3>{platform.name}</h3></div><span className="desktop-platform-version">0.8.0</span></div><small>{platform.detail}</small><div className="desktop-platform-actions"><External href={platform.href}><span className="button button--dark">Download <b>↓</b></span></External>{platform.alternateLinks && <div className="desktop-alternative-links" aria-label={`${platform.name} package alternatives`}>{platform.alternateLinks.map(([label, href]) => <External key={label} href={href}>{label}</External>)}</div>}</div></div></article>)}</div>
-      <p className="desktop-download-note"><span>Verified release assets</span> · GitHub downloads · Apple Silicon Mac · Windows x64 · Linux x64</p>
+      <div className="desktop-platform-grid">{desktopPlatforms.map((platform) => <article key={platform.name} className="desktop-platform-card"><div className="desktop-platform-icon" aria-hidden="true">{platform.icon}</div><div className="desktop-platform-card-copy"><div className="desktop-platform-card-header"><div><span className="desktop-platform-package">{platform.packageName}</span><h3>{platform.name}</h3></div><span className="desktop-platform-version">{desktopVersion}</span></div><small>{platform.detail}</small><div className="desktop-platform-actions"><External href={platform.href}><span className="button button--dark">Download <b>↓</b></span></External>{platform.alternateLinks.length > 0 && <div className="desktop-alternative-links" aria-label={`${platform.name} package alternatives`}>{platform.alternateLinks.map(([label, href]) => <External key={label} href={href}>{label}</External>)}</div>}</div></div></article>)}</div>
+      <p className="desktop-download-note"><External href={desktopRelease}>Release notes and installation details</External></p>
     </section>
     <section className="page-pad desktop-runtime-section" aria-label="Desktop runtime notes">
       <div className="desktop-runtime-strip"><span><b>Same workspace</b>Mission Control stays intact.</span><span><b>Local shell</b>Packaged server runs on loopback.</span><span><b>OpenClaw runtime</b>OpenClaw stays authoritative.</span></div>
