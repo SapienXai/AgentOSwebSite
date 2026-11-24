@@ -34,7 +34,7 @@ test("defines the desktop download experience", async () => {
   const routes = await readFile(new URL("app/[...slug]/page.tsx", projectRoot), "utf8");
 
   assert.match(home, /AGENTOS DESKTOP/);
-  assert.match(home, /Download Desktop/);
+  assert.match(home, /Download AgentOS/);
   assert.match(subpage, /function DesktopDownload/);
   assert.match(subpage, /macOS/);
   assert.match(subpage, /Windows/);
@@ -44,11 +44,11 @@ test("defines the desktop download experience", async () => {
   assert.match(subpage, /desktop-page/);
   assert.doesNotMatch(subpage, /desktop-install-steps/);
   assert.doesNotMatch(subpage, /desktop-release-banner/);
-  assert.match(subpage, /AgentOS_0\.8\.0_aarch64\.dmg/);
-  assert.match(subpage, /AgentOS_0\.8\.0_x64-setup\.exe/);
-  assert.match(subpage, /AgentOS_0\.8\.0_amd64\.AppImage/);
-  assert.match(subpage, /AgentOS_0\.8\.0_amd64\.deb/);
-  assert.match(subpage, /AgentOS-0\.8\.0-1\.x86_64\.rpm/);
+  assert.match(subpage, /const releaseVersion = "0\.9\.0"/);
+  assert.match(subpage, /desktop-preview/);
+  assert.match(subpage, /Download Windows Preview/);
+  assert.match(subpage, /Download Linux DEB Preview/);
+  assert.doesNotMatch(subpage, /AgentOS[-_][^\s]*\.(?:dmg|AppImage|rpm)/);
   assert.match(routes, /download:/);
 });
 

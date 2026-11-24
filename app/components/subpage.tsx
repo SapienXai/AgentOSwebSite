@@ -10,25 +10,12 @@ const railwayDocs = "https://docs.railway.com/";
 const openclawDocs = "https://docs.openclaw.ai/";
 const issueUrl = `${github}/issues`;
 const securityUrl = `${github}/security`;
-const desktopCandidate = "0.9.0";
-// Set this public build variable after the corresponding GitHub release is published.
-const desktopVersion = process.env.NEXT_PUBLIC_AGENTOS_DESKTOP_VERSION === desktopCandidate ? desktopCandidate : "0.8.0";
-const desktopRelease = `${github}/releases/tag/agentos-v${desktopVersion}`;
-const desktopAssetBase = `${github}/releases/download/agentos-v${desktopVersion}`;
-const legacyDesktopRelease = desktopVersion === "0.8.0";
-const desktopAssets = legacyDesktopRelease ? {
-  macos: "AgentOS_0.8.0_aarch64.dmg",
-  windows: "AgentOS_0.8.0_x64-setup.exe",
-  linuxAppImage: "AgentOS_0.8.0_amd64.AppImage",
-  linuxDeb: "AgentOS_0.8.0_amd64.deb",
-  linuxRpm: "AgentOS-0.8.0-1.x86_64.rpm",
-} : {
-  macos: `AgentOS-${desktopVersion}-macos-arm64.dmg`,
-  windows: `AgentOS-${desktopVersion}-windows-x64-setup.exe`,
-  linuxAppImage: `AgentOS-${desktopVersion}-linux-x64.AppImage`,
-  linuxDeb: `AgentOS-${desktopVersion}-linux-x64.deb`,
-  linuxRpm: `AgentOS-${desktopVersion}-linux-x64.rpm`,
-};
+const releaseVersion = "0.9.0";
+const stableTag = `agentos-v${releaseVersion}`;
+const desktopPreviewTag = `${stableTag}-desktop-preview`;
+const stableRelease = `${github}/releases/tag/${stableTag}`;
+const desktopPreviewRelease = `${github}/releases/tag/${desktopPreviewTag}`;
+const desktopPreviewAssets = `${github}/releases/download/${desktopPreviewTag}`;
 
 type LinkItem = readonly [string, string, boolean?];
 type Worker = { name: string; role: string; image: string; purpose: string; setup: string; review: string };
@@ -73,8 +60,8 @@ const solutionData: Record<string, { eyebrow: string; title: string; summary: st
 
 function External({ href, children }: { href: string; children: React.ReactNode }) { return <a href={href} target="_blank" rel="noreferrer">{children}</a>; }
 function Brand() { return <a className="brand" href="/" aria-label="AgentOS home"><img src="/assets/agentlogo.webp" alt="" /><span>Agent<span>OS</span></span></a>; }
-function Header() { return <header className="nav-shell subpage-nav"><Brand /><nav aria-label="Main navigation"><div className="nav-links"><a href="/product">Product</a><a href="/download">Download</a><a href="/solutions/solo-founders">Solutions</a><a href="/docs">Resources</a><a href="/#pricing">Pricing</a><a href="/about">Company</a></div></nav><a href="/download" className="button button--small nav-cta">Download Desktop <b>→</b></a></header>; }
-function Footer() { const groups: readonly [string, readonly LinkItem[]][] = [["Product", [["Overview", "/product"], ["Features", "/features"], ["Download Desktop", "/download"], ["Pricing", "/#pricing"], ["Integrations", "/integrations"], ["Changelog", "/changelog"]]], ["Solutions", [["Solo Founders", "/solutions/solo-founders"], ["Automation Agencies", "/solutions/automation-agencies"], ["Startup Teams", "/solutions/startup-teams"], ["Web3 & Communities", "/solutions/web3-communities"]]], ["Resources", [["Documentation", "/docs"], ["Deployment Guide", "/deployment-guide"], ["OpenClaw Setup", "/openclaw-setup"], ["Agent Templates", "/templates"], ["FAQ", "/faq"], ["Support", "/support"]]], ["Company", [["About AgentOS", "/about"], ["GitHub", github, true], ["Contact", "/contact"], ["Security", "/security"], ["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"]]]]; return <footer className="footer page-pad subpage-footer"><div className="footer-brand"><Brand /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="AgentOS social links"><External href="https://sapienx.app/">◉</External><External href="https://t.me/sapienapp">◌</External><External href="https://x.com/sapienapp">𝕏</External><External href="https://www.linkedin.com/company/sapienxapp/">in</External><External href={github}>◒</External></div></div>{groups.map(([name, links]) => <nav className="footer-links" aria-label={`${name} links`} key={name}><h4>{name}</h4>{links.map(([label, href, external]) => external ? <External key={label} href={href}>{label}</External> : <a key={label} href={href}>{label}</a>)}</nav>)}<div className="footer-credit"><span>© 2026 AgentOS. All rights reserved.</span><strong>Designed and built by AI agents, powered by AgentOS.</strong><i>✦</i></div></footer>; }
+function Header() { return <header className="nav-shell subpage-nav"><Brand /><nav aria-label="Main navigation"><div className="nav-links"><a href="/product">Product</a><a href="/download">Download</a><a href="/solutions/solo-founders">Solutions</a><a href="/docs">Resources</a><a href="/#pricing">Pricing</a><a href="/about">Company</a></div></nav><a href="/download" className="button button--small nav-cta">Download AgentOS <b>→</b></a></header>; }
+function Footer() { const groups: readonly [string, readonly LinkItem[]][] = [["Product", [["Overview", "/product"], ["Features", "/features"], ["Download AgentOS", "/download"], ["Pricing", "/#pricing"], ["Integrations", "/integrations"], ["Changelog", "/changelog"]]], ["Solutions", [["Solo Founders", "/solutions/solo-founders"], ["Automation Agencies", "/solutions/automation-agencies"], ["Startup Teams", "/solutions/startup-teams"], ["Web3 & Communities", "/solutions/web3-communities"]]], ["Resources", [["Documentation", "/docs"], ["Deployment Guide", "/deployment-guide"], ["OpenClaw Setup", "/openclaw-setup"], ["Agent Templates", "/templates"], ["FAQ", "/faq"], ["Support", "/support"]]], ["Company", [["About AgentOS", "/about"], ["GitHub", github, true], ["Contact", "/contact"], ["Security", "/security"], ["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"]]]]; return <footer className="footer page-pad subpage-footer"><div className="footer-brand"><Brand /><p>The AI workforce platform to build,<br />run, and scale digital workers.</p><div className="socials" aria-label="AgentOS social links"><External href="https://sapienx.app/">◉</External><External href="https://t.me/sapienapp">◌</External><External href="https://x.com/sapienapp">𝕏</External><External href="https://www.linkedin.com/company/sapienxapp/">in</External><External href={github}>◒</External></div></div>{groups.map(([name, links]) => <nav className="footer-links" aria-label={`${name} links`} key={name}><h4>{name}</h4>{links.map(([label, href, external]) => external ? <External key={label} href={href}>{label}</External> : <a key={label} href={href}>{label}</a>)}</nav>)}<div className="footer-credit"><span>© 2026 AgentOS. All rights reserved.</span><strong>Designed and built by AI agents, powered by AgentOS.</strong><i>✦</i></div></footer>; }
 function Hero({ eyebrow, title, summary, image, primary = ["Deploy AgentOS", deploy, true], secondary = ["Read the documentation", "/docs"] as LinkItem, variant = "" }: { eyebrow: string; title: string; summary: string; image?: string; primary?: LinkItem; secondary?: LinkItem; variant?: string }) { const action = (item: LinkItem, className: string) => item[2] ? <External href={item[1]}><span className={className}>{item[0]} <b>→</b></span></External> : <a href={item[1]} className={className}>{item[0]} <b>→</b></a>; return <section className={`subpage-hero page-pad ${variant}`}><div><span className="eyebrow pill">{eyebrow}</span><h1>{title}</h1><p>{summary}</p><div className="hero-actions">{action(primary, "button")}{action(secondary, "button button--ghost")}</div></div><div className={`subpage-hero-visual ${image?.includes("cutouts") ? "is-worker" : ""}`}>{image ? <img src={image} alt="" /> : <div className="architecture-mini"><b>AgentOS</b><span>OpenClaw Gateway</span><span>Models, tools and channels</span></div>}</div></section>; }
 function FinalCta({ title = "Ready to build your AI workforce?", copy = "Start with one workspace, a clear role and a concrete first task.", action = ["Deploy AgentOS", deploy, true] as LinkItem }: { title?: string; copy?: string; action?: LinkItem }) { return <section className="final-cta page-pad"><div className="cta-panel"><div><h2>{title}</h2><p>{copy}</p></div>{action[2] ? <External href={action[1]}><span className="button footer-offer-cta">{action[0]} <b>→</b></span></External> : <a className="button footer-offer-cta" href={action[1]}>{action[0]} <b>→</b></a>}<div className="cta-video" aria-hidden="true"><video autoPlay muted loop playsInline preload="metadata"><source src="/assets/footer-loop.webm" type="video/webm" /></video></div></div></section>; }
 function LinkRow({ links }: { links: readonly LinkItem[] }) { return <div className="resource-links">{links.map(([label, href, external]) => external ? <External key={label} href={href}>{label}</External> : <a key={label} href={href}>{label} <span aria-hidden="true">→</span></a>)}</div>; }
@@ -103,25 +90,61 @@ function Legal({ type }: { type: "privacy" | "terms" }) { const isPrivacy = type
 
 function Integrations() { const all = [["OpenAI", "Model provider", "Available when configured in your AgentOS and OpenClaw environment.", "Configured"], ["Anthropic", "Model provider", "Available when configured in your AgentOS and OpenClaw environment.", "Configured"], ["Gemini", "Model provider", "Available when configured in your AgentOS and OpenClaw environment.", "Configured"], ["xAI", "Model provider", "Available when configured in your AgentOS and OpenClaw environment.", "Configured"], ["Telegram", "Channel", "A workspace surface supported through OpenClaw where configured.", "Runtime-dependent"], ["Discord", "Channel", "A workspace surface supported through OpenClaw where configured.", "Runtime-dependent"], ["Slack", "Channel", "A workspace surface supported through OpenClaw where configured.", "Runtime-dependent"], ["Browser profiles", "Browser", "An MVP bridge through the underlying runtime; typed browser-profile dispatch is not yet exposed.", "Experimental"]] as const; const [query, setQuery] = useState(""); const shown = useMemo(() => all.filter(x => x.join(" ").toLowerCase().includes(query.toLowerCase())), [query]); return <><Hero eyebrow="PRODUCT / INTEGRATIONS" title="Connect the resources your workforce actually needs." summary="Model providers, channels and browser capability are configured through the connected runtime. This directory describes connection types represented in the current AgentOS product—not a claim that every resource is active in every deployment." image="/assets/screens/08-agent-menu.webp" primary={["Read OpenClaw setup", "/openclaw-setup"]} /><section className="page-pad integration-directory"><label>Search connection types<input value={query} onChange={e => setQuery(e.target.value)} placeholder="Models, channels or browser capability" /></label><div className="integration-grid">{shown.map(([name, category, copy, status]) => <article key={name}><span>{category}</span><i className={status === "Experimental" ? "status-beta" : "status-community"}>{status}</i><h2>{name}</h2><p>{copy}</p></article>)}</div><p className="content-note">Connection availability depends on your configured provider keys, Gateway capabilities, scopes and account policies. AgentOS makes unsupported or degraded paths visible rather than representing them as ready.</p></section><FinalCta title="Connect a model before connecting everything else." copy="A single ready provider and a scoped task are the clearest way to verify a new deployment." action={["Read deployment guide", "/deployment-guide"]} /></>; }
 
-function Changelog() { return <><Hero eyebrow="PRODUCT / CHANGELOG" title="Verified release information belongs with the source." summary="This marketing-site repository does not contain a verified AgentOS release timeline. Rather than invent release notes, use the public repository and its release history for the current source of truth." primary={["View repository releases", `${github}/releases`, true]} secondary={["Open GitHub repository", github, true]} /><section className="page-pad empty-release"><span className="eyebrow">RELEASE INFORMATION</span><h2>No duplicate release feed on this site.</h2><p>AgentOS is actively developed. Version compatibility, installation details and update guidance should be taken from the repository and Quickstart that correspond to the version you are operating.</p><LinkRow links={[["AgentOS Quickstart", quickstart, true], ["Repository releases", `${github}/releases`, true], ["OpenClaw setup", "/openclaw-setup"]]} /></section><FinalCta title="Check compatibility before an update." copy="OpenClaw and AgentOS versions should be evaluated together, especially for a trusted runtime with persistent state." action={["Read the Quickstart", quickstart, true]} /></>; }
+function Changelog() {
+  return <>
+    <Hero eyebrow="PRODUCT / CHANGELOG" title={`AgentOS ${releaseVersion}`} summary="The first production CLI release pairs with OpenClaw 2026.11.5. Setup guides you from connecting a model to your first workspace and agent conversation." primary={["Read the 0.9.0 release notes", stableRelease, true]} secondary={["View all releases", `${github}/releases`, true]} />
+    <section className="page-pad empty-release">
+      <h2>Desktop Public Preview</h2>
+      <p>Preview installers are available separately for Windows x64 and Linux x64 DEB. Check the downloads page for platform availability and signing status.</p>
+      <LinkRow links={[["Download AgentOS", "/download"], ["View Desktop Preview notes", desktopPreviewRelease, true]]} />
+    </section>
+  </>;
+}
 
 const desktopPlatforms = [
-  { icon: "⌘", name: "macOS", packageName: "DMG · Apple Silicon", detail: legacyDesktopRelease ? "Ad hoc signed · notarization unavailable" : "See release notes for installation details", href: `${desktopAssetBase}/${desktopAssets.macos}`, alternateLinks: [] as const },
-  { icon: "⊞", name: "Windows", packageName: "Windows installer · x64", detail: legacyDesktopRelease ? "Authenticode signing is not configured" : "See release notes for installation details", href: `${desktopAssetBase}/${desktopAssets.windows}`, alternateLinks: [] as const },
-  { icon: "◈", name: "Linux", packageName: "AppImage · DEB · RPM · x64", detail: "AppImage recommended", href: `${desktopAssetBase}/${desktopAssets.linuxAppImage}`, alternateLinks: [["DEB", `${desktopAssetBase}/${desktopAssets.linuxDeb}`], ["RPM", `${desktopAssetBase}/${desktopAssets.linuxRpm}`]] },
+  {
+    icon: "⊞",
+    name: "Windows",
+    packageName: "Windows installer · x64",
+    detail: "Authenticode signing is pending. Windows may show an unrecognized publisher warning.",
+    label: "Download Windows Preview",
+    href: `${desktopPreviewAssets}/AgentOS-${releaseVersion}-windows-x64-setup.exe`,
+  },
+  {
+    icon: "◈",
+    name: "Linux",
+    packageName: "Debian package · x64",
+    detail: "For Debian and Ubuntu. Install and update manually during the preview.",
+    label: "Download Linux DEB Preview",
+    href: `${desktopPreviewAssets}/AgentOS-${releaseVersion}-linux-x64.deb`,
+  },
 ] as const;
 
 function DesktopDownload() {
   return <div className="desktop-page">
-    <Hero eyebrow={`PRODUCT / DESKTOP · ${desktopVersion}`} title="AgentOS, installed on your desktop." summary="The AgentOS workspace, packaged as a native app for macOS, Windows and Linux." image="/assets/screens/01-mission-control.webp" primary={["View release assets", desktopRelease, true]} secondary={["Deploy on Railway", deploy, true]} variant="desktop-hero" />
+    <Hero eyebrow={`PRODUCT / DOWNLOAD · ${releaseVersion}`} title="Download AgentOS." summary="Install the stable CLI on macOS, Windows or Linux. Desktop Public Preview installers are available for Windows x64 and Linux x64 DEB." image="/assets/screens/01-mission-control.webp" primary={["Get the stable CLI", stableRelease, true]} secondary={["Read CLI installation instructions", `${github}#install`, true]} variant="desktop-hero" />
     <section className="page-pad desktop-download-section" aria-labelledby="desktop-download-title">
-      <div className="desktop-download-heading"><div className="section-heading"><span className="eyebrow">CHOOSE YOUR PLATFORM</span><h2 id="desktop-download-title">Download AgentOS Desktop.</h2></div><div className="desktop-release-meta"><span>v{desktopVersion}</span><span>Apple Silicon · Windows x64 · Linux x64</span><External href={desktopRelease}>All release assets <b>↗</b></External></div></div>
-      <div className="desktop-platform-grid">{desktopPlatforms.map((platform) => <article key={platform.name} className="desktop-platform-card"><div className="desktop-platform-icon" aria-hidden="true">{platform.icon}</div><div className="desktop-platform-card-copy"><div className="desktop-platform-card-header"><div><span className="desktop-platform-package">{platform.packageName}</span><h3>{platform.name}</h3></div><span className="desktop-platform-version">{desktopVersion}</span></div><small>{platform.detail}</small><div className="desktop-platform-actions"><External href={platform.href}><span className="button button--dark">Download <b>↓</b></span></External>{platform.alternateLinks.length > 0 && <div className="desktop-alternative-links" aria-label={`${platform.name} package alternatives`}>{platform.alternateLinks.map(([label, href]) => <External key={label} href={href}>{label}</External>)}</div>}</div></div></article>)}</div>
-      <p className="desktop-download-note"><External href={desktopRelease}>Release notes and installation details</External></p>
+      <div className="desktop-download-heading">
+        <div className="section-heading"><h2 id="desktop-download-title">Desktop Public Preview</h2></div>
+        <div className="desktop-release-meta"><span>v{releaseVersion}</span><External href={desktopPreviewRelease}>Preview notes and checksums <b aria-hidden="true">↗</b></External></div>
+      </div>
+      <div className="desktop-platform-grid">
+        {desktopPlatforms.map((platform) => (
+          <article key={platform.name} className="desktop-platform-card">
+            <div className="desktop-platform-icon" aria-hidden="true">{platform.icon}</div>
+            <div className="desktop-platform-card-copy">
+              <div className="desktop-platform-card-header"><div><span className="desktop-platform-package">{platform.packageName}</span><h3>{platform.name}</h3></div></div>
+              <small>{platform.detail}</small>
+              <div className="desktop-platform-actions"><External href={platform.href}><span className="button button--dark">{platform.label} <b aria-hidden="true">↓</b></span></External></div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p className="desktop-download-note">Preview installers are delivered separately from stable Desktop auto-updates. macOS Desktop awaits Developer ID signing and notarization. Linux AppImage and RPM await a successful packaged launch.</p>
     </section>
     <section className="page-pad desktop-runtime-section" aria-label="Desktop runtime notes">
       <div className="desktop-runtime-strip"><span><b>Same workspace</b>Mission Control stays intact.</span><span><b>Local shell</b>Packaged server runs on loopback.</span><span><b>OpenClaw runtime</b>OpenClaw stays authoritative.</span></div>
-      <p className="desktop-next-step">New to AgentOS? <External href={quickstart}>Read the Quickstart <b>→</b></External></p>
+      <p className="desktop-next-step">New to AgentOS? <External href={quickstart}>Read the Quickstart <b aria-hidden="true">→</b></External></p>
     </section>
     <FinalCta title="Prefer hosted AgentOS?" copy="Deploy AgentOS and its runtime in a persistent Railway environment." action={["Deploy on Railway", deploy, true]} />
   </div>;
