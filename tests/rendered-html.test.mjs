@@ -44,7 +44,10 @@ test("defines the desktop download experience", async () => {
   assert.match(subpage, /desktop-page/);
   assert.doesNotMatch(subpage, /desktop-install-steps/);
   assert.doesNotMatch(subpage, /desktop-release-banner/);
-  assert.match(subpage, /const releaseVersion = "0\.9\.0"/);
+  assert.match(subpage, /const releaseVersion = "0\.11\.0"/);
+  assert.match(subpage, /const desktopPreviewVersion = "0\.11\.0"/);
+  assert.match(subpage, /AgentOS-\$\{desktopPreviewVersion\}-windows-x64-setup\.exe/);
+  assert.match(subpage, /AgentOS-\$\{desktopPreviewVersion\}-linux-x64\.deb/);
   assert.match(subpage, /desktop-preview/);
   assert.match(subpage, /Download Windows Preview/);
   assert.match(subpage, /Download Linux DEB Preview/);
